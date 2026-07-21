@@ -116,6 +116,14 @@
             border-left: 4px solid #1abc9c;
             padding: 15px 20px;
             border-radius: 0 12px 12px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cheat-text {
+            flex-grow: 1;
         }
 
         .cheat-item strong {
@@ -131,6 +139,7 @@
             font-size: 15px;
         }
 
+        /* Interactive Buttons */
         .btn {
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.4);
@@ -147,6 +156,24 @@
             color: #ffffff;
             border-color: #ffffff;
             background: rgba(255, 255, 255, 0.05);
+        }
+
+        .copy-btn {
+            background: rgba(26, 188, 156, 0.1);
+            border: 1px solid rgba(26, 188, 156, 0.4);
+            color: #1abc9c;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: #1abc9c;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -182,11 +209,11 @@
         <div class="panel" id="panel-aws">
             <div class="details-title">☁️ Amazon Web Services (AWS) Core Portfolio</div>
             <div class="cheat-sheet-list">
-                <div class="cheat-item"><strong>EC2 (Elastic Compute Cloud)</strong><span>Scalable, raw virtual machine servers in the cloud.</span></div>
-                <div class="cheat-item"><strong>S3 (Simple Storage Service)</strong><span>Object storage system used to store web static artifacts and build packages.</span></div>
-                <div class="cheat-item"><strong>VPC (Virtual Private Cloud)</strong><span>Isolated logical virtual networks to launch isolated cloud infrastructure.</span></div>
-                <div class="cheat-item"><strong>IAM (Identity & Access Management)</strong><span>Secure governance profile roles for cloud service users and computer machines.</span></div>
-                <div class="cheat-item"><strong>RDS (Relational Database Service)</strong><span>Managed SQL transactional database endpoints (MySQL, PostgreSQL).</span></div>
+                <div class="cheat-item"><div class="cheat-text"><strong class="cmd-text">EC2</strong><span>Scalable, raw virtual machine servers in the cloud.</span></div><button class="copy-btn" onclick="copyCommand(this)">Copy</button></div>
+                <div class="cheat-item"><div class="cheat-text"><strong class="cmd-text">S3</strong><span>Object storage system used to store web static artifacts and build packages.</span></div><button class="copy-btn" onclick="copyCommand(this)">Copy</button></div>
+                <div class="cheat-item"><div class="cheat-text"><strong class="cmd-text">VPC</strong><span>Isolated logical virtual networks to launch isolated cloud infrastructure.</span></div><button class="copy-btn" onclick="copyCommand(this)">Copy</button></div>
+                <div class="cheat-item"><div class="cheat-text"><strong class="cmd-text">IAM</strong><span>Secure governance profile roles for cloud service users and computer machines.</span></div><button class="copy-btn" onclick="copyCommand(this)">Copy</button></div>
+                <div class="cheat-item"><div class="cheat-text"><strong class="cmd-text">RDS</strong><span>Managed SQL transactional database endpoints (MySQL, PostgreSQL).</span></div><button class="copy-btn" onclick="copyCommand(this)">Copy</button></div>
             </div>
             <button class="btn" onclick="navigateTo('panel-grid')">⬅ Back to Grid</button>
         </div>
@@ -195,29 +222,11 @@
         <div class="panel" id="panel-github">
             <div class="details-title">🐙 GitHub Core Team Actions</div>
             <div class="cheat-sheet-list">
-                <div class="cheat-item"><strong>git clone [url]</strong><span>Clones down a secure central code repository to local environments.</span></div>
-                <div class="cheat-item"><strong>git commit -am "message"</strong><span>Stages all tracked mutations and builds a structural local revision history block.</span></div>
-                <div class="cheat-item"><strong>git push origin [branch]</strong><span>Uploads verified tracking commits directly into the central cloud remote branch.</span></div>
-                <div class="cheat-item"><strong>git pull</strong><span>Fetches clean upstream iterations and merges them locally.</span></div>
+                <div class="cheat-item"><div class="cheat-text"><strong class="cmd-text">git clone [url]</strong><span>Clones down a secure central code repository to local environments.</span></div><button class="copy-btn" onclick="copyCommand(this)">Copy</button></div>
+                <div class="cheat-item"><div class="cheat-text"><strong class="cmd-text">git commit -am "message"</strong><span>Stages all tracked mutations and builds a structural local revision history block.</span></div><button class="copy-btn" onclick="copyCommand(this)">Copy</button></div>
+                <div class="cheat-item"><div class="cheat-text"><strong class="cmd-text">git push origin [branch]</strong><span>Uploads verified tracking commits directly into the central cloud remote branch.</span></div><button class="copy-btn" onclick="copyCommand(this)">Copy</button></div>
+                <div class="cheat-item"><div class="cheat-text"><strong class="cmd-text">git pull</strong><span>Fetches clean upstream iterations and merges them locally.</span></div><button class="copy-btn" onclick="copyCommand(this)">Copy</button></div>
             </div>
             <button class="btn" onclick="navigateTo('panel-grid')">⬅ Back to Grid</button>
         </div>
 
-        <!-- 5. DOCKER PANEL -->
-        <div class="panel" id="panel-docker">
-            <div class="details-title">🐳 Docker Engine Commands</div>
-            <div class="cheat-sheet-list">
-                <div class="cheat-item"><strong>docker build -t [name] .</strong><span>Compiles a target container application runtime configuration from a Dockerfile layout.</span></div>
-                <div class="cheat-item"><strong>docker run -d -p 80:80 [image]</strong><span>Triggers an isolated container daemon running in detached back-end network mode.</span></div>
-                <div class="cheat-item"><strong>docker ps</strong><span>Displays active, working containers running on the local architecture engine layer.</span></div>
-                <div class="cheat-item"><strong>docker rmi $(docker images -q)</strong><span>Force clears redundant stale local container cache layouts.</span></div>
-            </div>
-            <button class="btn" onclick="navigateTo('panel-grid')">⬅ Back to Grid</button>
-        </div>
-
-        <!-- 6. KUBE PANEL -->
-        <div class="panel" id="panel-k8s">
-            <div class="details-title">☸️ Kubernetes (K8s) Cluster Actions</div>
-            <div class="cheat-sheet-list">
-                <div class="cheat-item"><strong>kubectl get pods -n [namespace]</strong><span>Retrieves status information from compute pod runtimes in specified areas.</span></div>
-                <div class="cheat-item"><strong>kubectl apply -f [manifest.yaml]</strong><span>Creates or updates cluster configurations declaratively.</span></div>
