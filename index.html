@@ -7,10 +7,9 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            /* ATTRACTIVE: Dynamic, moving gradient background */
-            background: linear-gradient(-45deg, #22c1c3, #fdbb2d, #1abc9c, #2ecc71);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            /* ATTRACTIVE: Full-bleed high-resolution technology background image */
+            background: url('https://unsplash.com') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,32 +18,26 @@
             overflow: hidden;
         }
 
-        /* Smooth background movement animation */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         .card {
-            /* ATTRACTIVE: Modern glassmorphism card effect */
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            /* ATTRACTIVE: Translucent glass card to make text readable over the image */
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             text-align: center;
             max-width: 400px;
             width: 85%;
             transform: translateY(0);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        /* Subtle hover pop effect on the card */
+        /* Hover elevation effect */
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
         }
 
         .icon-circle {
@@ -56,7 +49,7 @@
             justify-content: center;
             align-items: center;
             margin: 0 auto 20px auto;
-            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.2);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.25);
         }
 
         .icon {
@@ -66,29 +59,30 @@
         }
 
         h1 {
-            color: #2c3e50;
+            color: #1a252f;
             margin: 0 0 12px 0;
             font-size: 26px;
             font-weight: 700;
         }
 
         p {
-            color: #5a6c7d;
+            color: #34495e;
             font-size: 16px;
             line-height: 1.6;
             margin: 0 0 25px 0;
+            font-weight: 500;
         }
 
         .badge {
             background: linear-gradient(135deg, #1abc9c, #16a085);
             color: white;
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 30px;
             font-size: 14px;
             font-weight: 600;
             display: inline-block;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 10px rgba(26, 188, 156, 0.3);
+            box-shadow: 0 4px 12px rgba(26, 188, 156, 0.4);
         }
     </style>
 </head>
