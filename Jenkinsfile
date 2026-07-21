@@ -16,7 +16,7 @@ pipeline {
         stage('Package Code') {
             steps {
                 echo 'Packaging project files and index.html into a zip archive...'
-                // FIXED: Direct file targeting using separate workspace staging prevents self-inclusion & recursive loops
+                // FIXED: Creates the zip outside the root directory to prevent a recursive loop, then brings it back
                 sh "zip -r ../package-${BUILD_NUMBER}.zip . -x '*.git*' 'Jenkinsfile' 'README.md' '.gitignore'"
                 sh "mv ../package-${BUILD_NUMBER}.zip ."
             }
@@ -33,7 +33,7 @@ pipeline {
     post {
         success {
             echo "CI Complete! Triggering downstream job NGINX_CD with parameter: ${BUILD_NUMBER}"
-            // FIXED: Structural wrapper block correctly parameters execution triggers
+            // FIXED: Structural wrapper block correctly passes the build parameter to the CD pipeline
             build job: 'NGINX_CD', 
                   wait: false, 
                   parameters: [
