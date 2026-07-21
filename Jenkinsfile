@@ -16,7 +16,7 @@ pipeline {
         stage('Package Code') {
             steps {
                 echo 'Packaging project files and index.html into a zip archive...'
-                // FIXED: Output the zip to the parallel temp folder to avoid self-inclusion
+                // FIXED: Direct file targeting using separate workspace staging prevents self-inclusion & recursive loops
                 sh "zip -r ../package-${BUILD_NUMBER}.zip . -x '*.git*' 'Jenkinsfile' 'README.md' '.gitignore'"
                 sh "mv ../package-${BUILD_NUMBER}.zip ."
             }
@@ -25,10 +25,7 @@ pipeline {
         stage('Upload Package to S3') {
             steps {
                 echo "Uploading package-${BUILD_NUMBER}.zip to S3 bucket..."
-                // ENHANCEMENT: It is highly recommended to wrap this block using Jenkins AWS steps
-                // withAWS(credentials: 'your-aws-credential-id', region: "${env.AWS_REGION}") {
-                    sh "aws s3 cp package-${BUILD_NUMBER}.zip ${env.S3_BUCKET}/package-${BUILD_NUMBER}.zip --region ${env.AWS_REGION}"
-                // }
+                sh "aws s3 cp package-${BUILD_NUMBER}.zip ${env.S3_BUCKET}/package-${BUILD_NUMBER}.zip --region ${env.AWS_REGION}"
             }
         }
     }
@@ -36,7 +33,7 @@ pipeline {
     post {
         success {
             echo "CI Complete! Triggering downstream job NGINX_CD with parameter: ${BUILD_NUMBER}"
-            // FIXED: Added the mandatory 'parameters: [ ... ]' wrapper block
+            // FIXED: Structural wrapper block correctly parameters execution triggers
             build job: 'NGINX_CD', 
                   wait: false, 
                   parameters: [
