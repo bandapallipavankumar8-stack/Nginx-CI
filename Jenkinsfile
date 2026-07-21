@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Target AWS S3 Bucket Name
-        S3_BUCKET = 's3://code-version/packages'
+        S3_BUCKET = 's3://nginx-ci/packages'
         // Target AWS Region (Mumbai)
         AWS_REGION = 'ap-south-1'
     }
