@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Successful</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 400px;
+        }
+        .icon {
+            font-size: 48px;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+        p {
+            color: #7f8c8d;
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0 0 20px 0;
+        }
+        .badge {
+            background-color: #e8f8f5;
+            color: #1abc9c;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="icon">✓</div>
+        <h1>Deployment Success!</h1>
+        <p>Your sample HTML webpage was packaged via Jenkins and pushed to your AWS S3 bucket in Mumbai.</p>
+        <div class="badge">Region: ap-south-1</div>
+    </div>
+
+</body>
+</html>
