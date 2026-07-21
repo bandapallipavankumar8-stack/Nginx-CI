@@ -3,117 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS Cloud Center</title>
+    <title>Deployment Completed</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #1a202c;
+            /* ATTRACTIVE: Full-screen beautiful landscape nature background image */
+            background: url('https://unsplash.com') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            width: 100vw;
             margin: 0;
-            color: #ffffff;
+            overflow: hidden;
         }
 
         .card {
-            background: #2d3748;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            /* ATTRACTIVE: Sleek frost-glass layout so text is easily readable over nature branches */
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 45px 35px;
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
             text-align: center;
-            max-width: 450px;
-            width: 90%;
+            max-width: 440px;
+            width: 85%;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.3s ease;
         }
 
-        /* Home View Trigger */
-        .aws-trigger {
-            cursor: pointer;
-            padding: 20px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            transition: background 0.2s ease;
+        .card:hover {
+            transform: translateY(-5px);
         }
 
-        .aws-trigger:hover {
-            background: #ff9900; /* AWS Orange */
-            color: #1a202c;
+        .leaf-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+            display: inline-block;
         }
 
-        h1 { margin: 10px 0; font-size: 32px; }
-        p { color: #a0aec0; }
-        .aws-trigger:hover p { color: #2d3748; }
-
-        /* Services View (Hidden Initially) */
-        .services-list {
-            display: none;
-            text-align: left;
+        h1 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.3;
         }
 
-        .service-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 12px 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border-left: 4px solid #ff9900;
+        p {
+            color: #4f5d6c;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 0 25px 0;
+            font-weight: 500;
         }
 
-        .service-item strong { color: #ff9900; display: block; }
-
-        .back-btn {
-            margin-top: 20px;
-            background: transparent;
-            border: 1px solid #ff9900;
-            color: #ff9900;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-        }
-
-        .back-btn:hover {
-            background: #ff9900;
-            color: #1a202c;
+        .badge {
+            background: linear-gradient(135deg, #27ae60, #11998e);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        
-        <!-- VIEW 1: HOME PAGE -->
-        <div id="home-view" class="aws-trigger" onclick="showServices()">
-            <div style="font-size: 60px;">☁️</div>
-            <h1>Amazon Web Services</h1>
-            <p>Click here to explore deployed cloud features</p>
-        </div>
-
-        <!-- VIEW 2: SERVICES LIST -->
-        <div id="services-view" class="services-list">
-            <h2 style="color: #ff9900; margin-top: 0;">AWS Core Services</h2>
-            
-            <div class="service-item"><strong>EC2</strong>Compute virtual machines.</div>
-            <div class="service-item"><strong>S3</strong>Object artifact storage.</div>
-            <div class="service-item"><strong>VPC</strong>Isolated logical networks.</div>
-            <div class="service-item"><strong>IAM</strong>Security access control identities.</div>
-            <div class="service-item"><strong>RDS</strong>Managed relational SQL databases.</div>
-
-            <button class="back-btn" onclick="showHome()">⬅ Back</button>
-        </div>
-
+        <div class="leaf-icon">🌿</div>
+        <!-- FIXED: Updated with your exact requested display title -->
+        <h1>Deployment completed for jenkins</h1>
+        <p>Your production web static files have been successfully packaged, tracked, and served live from your target environment footprint.</p>
+        <div class="badge">STATUS: ACTIVE</div>
     </div>
 
-    <script>
-        function showServices() {
-            document.getElementById('home-view').style.display = 'none';
-            document.getElementById('services-view').style.display = 'block';
-        }
-
-        function showHome() {
-            document.getElementById('services-view').style.display = 'none';
-            document.getElementById('home-view').style.display = 'block';
-        }
-    </script>
 </body>
 </html>
