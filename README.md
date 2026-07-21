@@ -1,2 +1,2 @@
-Added comment to test nginx
+Added comment to test nginx server
 
