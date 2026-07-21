@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devops Deployments</title>
+    <title>Devops Deployments Dashboard</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -12,70 +12,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             width: 100vw;
             margin: 0;
-            overflow: hidden;
+            overflow-x: hidden;
+            color: #ffffff;
         }
 
         .dashboard-container {
-            position: relative;
             width: 90%;
-            max-width: 800px;
-            perspective: 1200px;
+            max-width: 900px;
+            margin: 20px auto;
         }
 
-        /* Interactive Landing Header Card */
-        .main-trigger-card {
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 50px 35px;
-            border-radius: 28px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            backface-visibility: hidden;
-        }
-
-        .main-trigger-card:hover {
-            transform: scale(1.03) translateY(-5px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .pulse-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        h1 {
-            color: #1a252f;
-            margin: 0 0 10px 0;
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .click-hint {
-            color: #1abc9c;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 15px;
-        }
-
-        /* Tech Stack Grid Area (Hidden initially) */
-        .tech-grid-card {
+        /* Views common styling */
+        .panel {
             background: rgba(20, 24, 35, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -84,25 +35,36 @@
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            display: none; /* Controlled via JS */
+            display: none;
             opacity: 0;
-            transform: scale(0.9) rotateX(15deg);
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: scale(0.95);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .tech-grid-card.active {
+        .panel.active {
             display: block;
             opacity: 1;
-            transform: scale(1) rotateX(0deg);
+            transform: scale(1);
         }
 
-        .grid-title {
-            color: #ffffff;
-            font-size: 28px;
+        /* HOME PANEL */
+        .home-panel {
+            background: rgba(255, 255, 255, 0.92);
+            color: #1a252f;
+            border-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+        .home-panel h1 { font-size: 38px; margin: 0 0 10px 0; font-weight: 800; }
+        .home-panel p { color: #4a5568; font-size: 16px; margin-bottom: 25px; }
+        .click-hint { color: #1abc9c; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 14px; }
+
+        /* GRID PANEL */
+        .grid-title, .details-title {
+            font-size: 30px;
             font-weight: 800;
             margin-bottom: 30px;
             border-bottom: 2px solid rgba(26, 188, 156, 0.3);
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
 
         .grid-layout {
@@ -111,53 +73,80 @@
             gap: 20px;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
             .grid-layout { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* Individual Tech Item Block */
         .tech-item {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 25px 15px;
-            border-radius: 16px;
-            color: #ffffff;
+            padding: 30px 15px;
+            border-radius: 18px;
+            cursor: pointer;
             font-weight: 700;
-            font-size: 18px;
-            transition: all 0.3s ease;
+            font-size: 20px;
+            transition: all 0.25s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .tech-item:hover {
             background: linear-gradient(135deg, #1abc9c, #2ecc71);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(26, 188, 156, 0.3);
+            box-shadow: 0 12px 24px rgba(26, 188, 156, 0.3);
             border-color: transparent;
         }
 
-        .tech-icon {
-            font-size: 28px;
+        .tech-icon { font-size: 36px; }
+
+        /* DETAILS CHEAT SHEET PANELS */
+        .cheat-sheet-list {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .back-btn {
-            margin-top: 30px;
+        .cheat-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #1abc9c;
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .cheat-item strong {
+            color: #1abc9c;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .cheat-item span {
+            color: #e2e8f0;
+            font-size: 15px;
+        }
+
+        .btn {
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.4);
-            color: #a0aec0;
-            padding: 8px 20px;
-            border-radius: 20px;
+            color: #cbd5e0;
+            padding: 10px 24px;
+            border-radius: 24px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.2s ease;
+            font-size: 14px;
         }
 
-        .back-btn:hover {
+        .btn:hover {
             color: #ffffff;
             border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
@@ -165,52 +154,70 @@
 
     <div class="dashboard-container">
         
-        <!-- HOME PAGE CARD -->
-        <div class="main-trigger-card" id="homeCard" onclick="showTechStack()">
-            <div class="pulse-icon">🚀</div>
+        <!-- 1. HOME CARD -->
+        <div class="panel home-panel active" id="panel-home" onclick="navigateTo('panel-grid')">
+            <div style="font-size: 60px; margin-bottom: 15px;">🚀</div>
             <h1>Devops Deployments</h1>
-            <p>Click the heading to explore the core automated pipeline architecture tools deployed on this infrastructure.</p>
-            <div class="click-hint">➔ Click to Open Stack</div>
+            <p>Enterprise infrastructure tracking system hosted live on AWS ap-south-1 infrastructure</p>
+            <div class="click-hint">➔ Click to Open Interactive Stack</div>
         </div>
 
-        <!-- TECH STACK EXPANDED GRID -->
-        <div class="tech-grid-card" id="gridCard">
-            <div class="grid-title">Core DevOps Toolchain</div>
-            
+        <!-- 2. TECH STACK GRID -->
+        <div class="panel" id="panel-grid">
+            <div class="grid-title">Select a Technology to View Details</div>
             <div class="grid-layout">
-                <div class="tech-item"><span class="tech-icon">☁️</span>AWS</div>
-                <div class="tech-item"><span class="tech-icon">🐙</span>GitHub</div>
-                <div class="tech-item"><span class="tech-icon">🐳</span>Docker</div>
-                <div class="tech-item"><span class="tech-icon">☸️</span>K8s</div>
-                <div class="tech-item"><span class="tech-icon">🏗️</span>Terraform</div>
-                <div class="tech-item"><span class="tech-icon">📜</span>Ansible</div>
+                <div class="tech-item" onclick="navigateTo('panel-aws')"><span class="tech-icon">☁️</span>AWS</div>
+                <div class="tech-item" onclick="navigateTo('panel-github')"><span class="tech-icon">🐙</span>GitHub</div>
+                <div class="tech-item" onclick="navigateTo('panel-docker')"><span class="tech-icon">🐳</span>Docker</div>
+                <div class="tech-item" onclick="navigateTo('panel-k8s')"><span class="tech-icon">☸️</span>K8s</div>
+                <div class="tech-item" onclick="navigateTo('panel-terraform')"><span class="tech-icon">🏗️</span>Terraform</div>
+                <div class="tech-item" onclick="navigateTo('panel-ansible')"><span class="tech-icon">📜</span>Ansible</div>
             </div>
-
-            <button class="back-btn" onclick="showHome()">⬅ Back to Home</button>
+            <div style="margin-top: 35px;">
+                <button class="btn" onclick="navigateTo('panel-home')">⬅ Back to Home</button>
+            </div>
         </div>
 
-    </div>
+        <!-- 3. AWS SERVICES PANEL -->
+        <div class="panel" id="panel-aws">
+            <div class="details-title">☁️ Amazon Web Services (AWS) Core Portfolio</div>
+            <div class="cheat-sheet-list">
+                <div class="cheat-item"><strong>EC2 (Elastic Compute Cloud)</strong><span>Scalable, raw virtual machine servers in the cloud.</span></div>
+                <div class="cheat-item"><strong>S3 (Simple Storage Service)</strong><span>Object storage system used to store web static artifacts and build packages.</span></div>
+                <div class="cheat-item"><strong>VPC (Virtual Private Cloud)</strong><span>Isolated logical virtual networks to launch isolated cloud infrastructure.</span></div>
+                <div class="cheat-item"><strong>IAM (Identity & Access Management)</strong><span>Secure governance profile roles for cloud service users and computer machines.</span></div>
+                <div class="cheat-item"><strong>RDS (Relational Database Service)</strong><span>Managed SQL transactional database endpoints (MySQL, PostgreSQL).</span></div>
+            </div>
+            <button class="btn" onclick="navigateTo('panel-grid')">⬅ Back to Grid</button>
+        </div>
 
-    <script>
-        const homeCard = document.getElementById('homeCard');
-        const gridCard = document.getElementById('gridCard');
+        <!-- 4. GITHUB PANEL -->
+        <div class="panel" id="panel-github">
+            <div class="details-title">🐙 GitHub Core Team Actions</div>
+            <div class="cheat-sheet-list">
+                <div class="cheat-item"><strong>git clone [url]</strong><span>Clones down a secure central code repository to local environments.</span></div>
+                <div class="cheat-item"><strong>git commit -am "message"</strong><span>Stages all tracked mutations and builds a structural local revision history block.</span></div>
+                <div class="cheat-item"><strong>git push origin [branch]</strong><span>Uploads verified tracking commits directly into the central cloud remote branch.</span></div>
+                <div class="cheat-item"><strong>git pull</strong><span>Fetches clean upstream iterations and merges them locally.</span></div>
+            </div>
+            <button class="btn" onclick="navigateTo('panel-grid')">⬅ Back to Grid</button>
+        </div>
 
-        function showTechStack() {
-            homeCard.style.display = 'none';
-            gridCard.style.display = 'block';
-            // Slight timeout to trigger CSS entry animations smoothly
-            setTimeout(() => {
-                gridCard.classList.add('active');
-            }, 10);
-        }
+        <!-- 5. DOCKER PANEL -->
+        <div class="panel" id="panel-docker">
+            <div class="details-title">🐳 Docker Engine Commands</div>
+            <div class="cheat-sheet-list">
+                <div class="cheat-item"><strong>docker build -t [name] .</strong><span>Compiles a target container application runtime configuration from a Dockerfile layout.</span></div>
+                <div class="cheat-item"><strong>docker run -d -p 80:80 [image]</strong><span>Triggers an isolated container daemon running in detached back-end network mode.</span></div>
+                <div class="cheat-item"><strong>docker ps</strong><span>Displays active, working containers running on the local architecture engine layer.</span></div>
+                <div class="cheat-item"><strong>docker rmi $(docker images -q)</strong><span>Force clears redundant stale local container cache layouts.</span></div>
+            </div>
+            <button class="btn" onclick="navigateTo('panel-grid')">⬅ Back to Grid</button>
+        </div>
 
-        function showHome() {
-            gridCard.classList.remove('active');
-            setTimeout(() => {
-                gridCard.style.display = 'none';
-                homeCard.style.display = 'block';
-            }, 400);
-        }
-    </script>
-</body>
-</html>
+        <!-- 6. KUBE PANEL -->
+        <div class="panel" id="panel-k8s">
+            <div class="details-title">☸️ Kubernetes (K8s) Cluster Actions</div>
+            <div class="cheat-sheet-list">
+                <div class="cheat-item"><strong>kubectl get pods -n [namespace]</strong><span>Retrieves status information from compute pod runtimes in specified areas.</span></div>
+                <div class="cheat-item"><strong>kubectl apply -f [manifest.yaml]</strong><span>Creates or updates cluster configurations declaratively.</span></div>
