@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            /* ATTRACTIVE: Full-screen abstract network/DevOps background image */
             background: url('https://unsplash.com') no-repeat center center fixed;
             background-size: cover;
             display: flex;
@@ -19,87 +18,199 @@
             overflow: hidden;
         }
 
-        .card {
-            /* ATTRACTIVE: High-fidelity glassmorphism structure for contrast over the image */
+        .dashboard-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            perspective: 1200px;
+        }
+
+        /* Interactive Landing Header Card */
+        .main-trigger-card {
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            padding: 45px 35px;
+            padding: 50px 35px;
             border-radius: 28px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
             text-align: center;
-            max-width: 420px;
-            width: 85%;
-            transform: translateY(0);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255, 255, 255, 0.5);
+            backface-visibility: hidden;
         }
 
-        /* Hover animation dynamics */
-        .card:hover {
-            transform: translateY(-8px);
+        .main-trigger-card:hover {
+            transform: scale(1.03) translateY(-5px);
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.95);
         }
 
-        .icon-circle {
-            background-color: #e8f8f5;
-            width: 85px;
-            height: 85px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 25px auto;
-            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
+        .pulse-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
         }
 
-        .icon {
-            font-size: 46px;
-            color: #2ecc71;
-            font-weight: bold;
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         h1 {
             color: #1a252f;
-            margin: 0 0 15px 0;
-            font-size: 28px;
+            margin: 0 0 10px 0;
+            font-size: 36px;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
 
-        p {
-            color: #34495e;
-            font-size: 16px;
-            line-height: 1.6;
-            margin: 0 0 30px 0;
-            font-weight: 500;
+        .click-hint {
+            color: #1abc9c;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
         }
 
-        .badge {
-            background: linear-gradient(135deg, #1abc9c, #16a085);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-size: 14px;
+        /* Tech Stack Grid Area (Hidden initially) */
+        .tech-grid-card {
+            background: rgba(20, 24, 35, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 28px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            display: none; /* Controlled via JS */
+            opacity: 0;
+            transform: scale(0.9) rotateX(15deg);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .tech-grid-card.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1) rotateX(0deg);
+        }
+
+        .grid-title {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(26, 188, 156, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-layout { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Individual Tech Item Block */
+        .tech-item {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 15px;
+            border-radius: 16px;
+            color: #ffffff;
             font-weight: 700;
-            display: inline-block;
-            letter-spacing: 0.8px;
-            box-shadow: 0 6px 15px rgba(26, 188, 156, 0.4);
-            text-transform: uppercase;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tech-item:hover {
+            background: linear-gradient(135deg, #1abc9c, #2ecc71);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(26, 188, 156, 0.3);
+            border-color: transparent;
+        }
+
+        .tech-icon {
+            font-size: 28px;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #a0aec0;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            color: #ffffff;
+            border-color: #ffffff;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="icon-circle">
-            <div class="icon">✓</div>
+    <div class="dashboard-container">
+        
+        <!-- HOME PAGE CARD -->
+        <div class="main-trigger-card" id="homeCard" onclick="showTechStack()">
+            <div class="pulse-icon">🚀</div>
+            <h1>Devops Deployments</h1>
+            <p>Click the heading to explore the core automated pipeline architecture tools deployed on this infrastructure.</p>
+            <div class="click-hint">➔ Click to Open Stack</div>
         </div>
-        <!-- FIXED: Updated with your requested title name -->
-        <h1>Devops Deployments</h1>
-        <p>Your sample HTML webpage was packaged via Jenkins and pushed to your AWS S3 bucket in Mumbai.</p>
-        <div class="badge">Region: ap-south-1</div>
+
+        <!-- TECH STACK EXPANDED GRID -->
+        <div class="tech-grid-card" id="gridCard">
+            <div class="grid-title">Core DevOps Toolchain</div>
+            
+            <div class="grid-layout">
+                <div class="tech-item"><span class="tech-icon">☁️</span>AWS</div>
+                <div class="tech-item"><span class="tech-icon">🐙</span>GitHub</div>
+                <div class="tech-item"><span class="tech-icon">🐳</span>Docker</div>
+                <div class="tech-item"><span class="tech-icon">☸️</span>K8s</div>
+                <div class="tech-item"><span class="tech-icon">🏗️</span>Terraform</div>
+                <div class="tech-item"><span class="tech-icon">📜</span>Ansible</div>
+            </div>
+
+            <button class="back-btn" onclick="showHome()">⬅ Back to Home</button>
+        </div>
+
     </div>
 
+    <script>
+        const homeCard = document.getElementById('homeCard');
+        const gridCard = document.getElementById('gridCard');
+
+        function showTechStack() {
+            homeCard.style.display = 'none';
+            gridCard.style.display = 'block';
+            // Slight timeout to trigger CSS entry animations smoothly
+            setTimeout(() => {
+                gridCard.classList.add('active');
+            }, 10);
+        }
+
+        function showHome() {
+            gridCard.classList.remove('active');
+            setTimeout(() => {
+                gridCard.style.display = 'none';
+                homeCard.style.display = 'block';
+            }, 400);
+        }
+    </script>
 </body>
 </html>
