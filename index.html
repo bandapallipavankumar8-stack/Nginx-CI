@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: 'ProximaNova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #fff;
@@ -42,16 +42,6 @@
             display: flex;
             align-items: center;
             gap: 30px;
-        }
-
-        .swiggy-logo {
-            height: 48px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .swiggy-logo:hover {
-            transform: scale(1.05);
         }
 
         .location-container {
@@ -137,7 +127,7 @@
         /* Split Page Workspace Layout */
         .split-layout {
             display: grid;
-            grid-template-columns: 2.5fr 1.2fr;
+            grid-template-columns: 2.2fr 1.2fr;
             gap: 40px;
         }
 
@@ -200,7 +190,7 @@
         .badge-veg { border: 1px solid var(--veg-green); }
         .badge-veg::after { content: ''; width: 7px; height: 7px; background: var(--veg-green); border-radius: 50%; }
         .badge-nonveg { border: 1px solid var(--nonveg-red); }
-        .badge-nonveg::after { content: ''; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 7px solid var(--nonveg-red); }
+        .badge-nonveg::after { content: ''; width: 7px; height: 7px; background: var(--nonveg-red); border-radius: 50%; }
 
         .item-title { font-size: 18px; font-weight: 600; margin: 0 0 4px 0; }
         .item-cost { font-weight: 600; font-size: 15px; margin: 0 0 10px 0; }
@@ -217,7 +207,7 @@
             height: 118px;
             border-radius: 12px;
             object-fit: cover;
-            background: #ebebeb;
+            background: #f9f9f9;
             border: 1px solid var(--border-color);
         }
 
@@ -258,11 +248,11 @@
             height: 100%;
             background: none;
             border: none;
-            color: #ccc;
+            color: #282c3f;
             font-size: 16px;
             cursor: pointer;
+            font-weight: bold;
         }
-        .quantity-control-btn:hover { color: var(--veg-green); }
 
         /* Swiggy High-Fidelity Cart Window Block */
         .checkout-cart-panel {
@@ -282,7 +272,7 @@
         
         .cart-item-row {
             display: grid;
-            grid-template-columns: 1.5fr 1fr 0.8fr;
+            grid-template-columns: 1.2fr 1fr 0.6fr;
             align-items: center;
             font-size: 14px;
             margin-bottom: 16px;
@@ -298,7 +288,7 @@
             padding: 2px 6px;
             font-size: 12px;
         }
-        .mini-qty-box span { cursor: pointer; color: var(--text-gray); font-weight: 800; }
+        .mini-qty-box span { cursor: pointer; color: var(--text-dark); font-weight: 800; }
 
         .bill-calculation-table {
             border-top: 2px solid var(--text-dark);
@@ -324,3 +314,12 @@
             letter-spacing: 0.5px;
             transition: box-shadow 0.2s;
         }
+        .btn-swiggy-pay:hover { box-shadow: 0 4px 14px rgba(252,128,25,0.4); }
+
+        /* Global Status Tracking Canvas Modal */
+        .live-tracker-overlay {
+            display: none;
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(40,44,63,0.7);
+            z-index: 5000;
