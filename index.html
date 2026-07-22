@@ -3,339 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrix Mobiles - All Brands Hub</title>
+    <title>Green Village Poultry Farm</title>
     <style>
-        :root {
-            --primary-blue: #0071e3;
-            --accent-orange: #ff9f00;
-            --text-dark: #1d1d1f;
-            --text-gray: #86868b;
-            --bg-light: #f5f5f7;
-            --border-color: #d2d2d7;
-            --instock-green: #00875a;
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-            color: var(--text-dark);
-            scroll-behavior: smooth;
+            background-color: #fcfbf7;
+            color: #333;
+            line-height: 1.6;
         }
 
-        /* Top Navigation Header Bar */
+        /* Header & Navigation */
         header {
+            background-color: #2e7d32; /* Organic Green */
+            color: white;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 50px;
-            height: 75px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .brand-logo {
+        .logo h1 {
             font-size: 24px;
-            font-weight: 800;
-            color: var(--primary-blue);
-            letter-spacing: -0.5px;
-            cursor: pointer;
         }
 
-        .location-container {
+        nav ul {
+            list-style: none;
             display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            background: var(--bg-light);
-            padding: 6px 12px;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
         }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 35px;
-            font-weight: 600;
-            font-size: 15px;
+        nav ul li {
+            margin-left: 20px;
         }
 
-        .nav-item {
-            cursor: pointer;
-            transition: color 0.2s;
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
         }
 
-        .nav-item:hover {
-            color: var(--primary-blue);
+        nav ul li a:hover {
+            color: #ffb300; /* Warm Yellow accent */
         }
 
-        /* Main Workspace Interface Container */
-        .main-container {
-            max-width: 1350px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        /* Interface Split Screen Grid Layout */
-        .shop-layout {
-            display: grid;
-            grid-template-columns: 2.3fr 1fr;
-            gap: 40px;
-        }
-
-        /* Catalog Filters Strip */
-        .filter-strip {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 25px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-
-        .filter-tag {
-            padding: 8px 16px;
-            border: 1px solid var(--border-color);
-            background: white;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            color: var(--text-dark);
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-
-        .filter-tag.active, .filter-tag:hover {
-            border-color: var(--primary-blue);
-            color: var(--primary-blue);
-            background: #f4f9ff;
-        }
-
-        /* Structural Container for Section Headings and Content Cards */
-        .brand-section-container {
-            margin-bottom: 35px;
-        }
-
-        .brand-heading-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin: 0 0 15px 0;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--bg-light);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Dynamic Grid Layout Components for Mobile Cards */
-        .mobile-catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .mobile-card {
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        /* Hero Banner Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://unsplash.com') no-repeat center center/cover;
+            height: 450px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .mobile-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-        }
-
-        .product-image-frame {
-            width: 100%;
-            height: 160px;
-            background-color: var(--bg-light);
-            border-radius: 8px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 13px;
-            color: var(--text-gray);
-            border: 1px solid #e5e5e7;
-        }
-
-        .product-brand {
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--text-gray);
-            margin-bottom: 4px;
-        }
-
-        .product-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin: 0 0 6px 0;
-            color: var(--text-dark);
-        }
-
-        .specs-bullet {
-            font-size: 12px;
-            color: var(--text-gray);
-            margin: 0 0 12px 0;
-            line-height: 1.4;
-            min-height: 34px;
-        }
-
-        .product-stock {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--instock-green);
-            margin-bottom: 12px;
-        }
-
-        .price-row {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-top: auto;
-        }
-
-        .product-cost {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-
-        .btn-buy {
-            background-color: var(--primary-blue);
+            text-align: center;
             color: white;
-            border: none;
-            padding: 8px 14px;
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
+            padding: 20px;
         }
 
-        .btn-buy:hover {
-            background-color: #005bb5;
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
         }
 
-        /* Shopping Cart Panel Section */
-        .cart-panel {
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            height: fit-content;
-            position: sticky;
-            top: 110px;
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 20px;
         }
 
-        .cart-header-title { font-size: 20px; font-weight: 700; margin: 0 0 15px 0; border-bottom: 1px solid var(--bg-light); padding-bottom: 10px; }
-        .cart-items-box { max-height: 260px; overflow-y: auto; margin-bottom: 20px; }
-        
-        .cart-item-row {
+        .btn {
+            background-color: #ffb300;
+            color: #333;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ffa000;
+        }
+
+        /* Container for content grid alignment */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: #2e7d32;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #ffb300;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Products Grid */
+        .grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.6fr 0.7fr;
-            align-items: center;
-            font-size: 13px;
-            margin-bottom: 14px;
-            font-weight: 600;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
-        .cart-qty-toggle {
-            display: flex;
-            align-items: center;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            width: 55px;
-            justify-content: space-between;
-            padding: 2px 6px;
-        }
-        .cart-qty-toggle span { cursor: pointer; font-weight: 800; color: var(--primary-blue); }
-
-        .pricing-summary {
-            border-top: 1px dashed var(--border-color);
-            padding-top: 15px;
-            font-size: 14px;
-            color: var(--text-gray);
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #2e7d32;
+            padding: 20px;
+            transition: transform 0.3s;
         }
 
-        .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .summary-total { font-size: 16px; font-weight: 700; color: var(--text-dark); border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: 10px; }
-
-        .btn-checkout {
-            width: 100%;
-            background: var(--accent-orange);
-            color: white;
-            font-weight: 700;
-            border: none;
-            padding: 14px;
-            font-size: 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .btn-checkout:hover { background: #e08b00; }
-
-        /* Order Success Modal Canvas Overlay */
-        .order-modal-overlay {
-            display: none;
-            position: fixed;
-            top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 5000;
-            justify-content: center;
-            align-items: center;
+        .card:hover {
+            transform: translateY(-5px);
         }
 
-        .order-success-card {
-            background: #fff;
-            padding: 40px;
-            width: 90%;
-            max-width: 440px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        .card-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #2e7d32;
+        }
+
+        /* About Section background treatment */
+        .about-section {
+            background-color: #f1f8e9;
+            padding: 50px 20px;
             text-align: center;
         }
 
-        .btn-modal-close {
-            width: 100%; background: var(--text-dark); color: #fff; border:none; padding: 12px; margin-top: 25px; font-weight: 700; cursor: pointer; border-radius: 6px;
+        .about-section p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Form Controls */
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+        }
+
+        .submit-btn {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        /* Footer configuration */
+        footer {
+            background-color: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        /* Responsive Layout Optimization */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            .hero h2 {
+                font-size: 30px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation Bar Framework -->
+    <!-- Header & Navigation Bar -->
     <header>
-        <div class="nav-left">
-            <div class="brand-logo">matrix<span>mobiles</span></div>
-            <div class="location-container">
-                <span>📍</span> <strong>KR Puram Hub</strong>, Bangalore
+        <div class="logo">
+            <h1>🌾 VillagePoultry</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#products">Our Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Banner section Area -->
+    <section id="home" class="hero">
+        <h2>100% Fresh & Organic Village Poultry</h2>
+        <p>Bringing Farm-Fresh, Healthy Eggs and Country Chicken directly to your Kitchen.</p>
+        <a href="#products" class="btn">Explore Fresh Produce</a>
+    </section>
+
+    <!-- About Section Content Box -->
+    <section id="about" class="about-section">
+        <h2 class="section-title">About Our Village Farm</h2>
+        <p>Located in the heart of the countryside, our village poultry farm focuses on free-range, organic, and traditional methods of rearing birds. We ensure our chickens live healthy, natural lives, delivering high-nutrition country eggs and meat directly to local markets and communities.</p>
+    </section>
+
+    <!-- Our Products Showcase Grid -->
+    <section id="products" class="container">
+        <h2 class="section-title">What We Offer</h2>
+        <div class="grid">
+            <!-- Product Item 1 -->
+            <div class="card">
+                <div class="card-icon">🥚</div>
+                <h3>Country Eggs</h3>
+                <p>Rich in proteins, natural organic yolk color, harvested daily from healthy free-range country layers.</p>
+            </div>
+            <!-- Product Item 2 -->
+            <div class="card">
+                <div class="card-icon">🐓</div>
+                <h3>Free-Range Chicken</h3>
+                <p>Pure village breed country chicken reared with fully organic grains and natural feed without artificial feed additives.</p>
+            </div>
+            <!-- Product Item 3 -->
+            <div class="card">
+                <div class="card-icon">🚜</div>
+                <h3>Wholesale Supply</h3>
+                <p>We supply fresh bulk orders directly to local village markets, organic retail shops, and neighborhood communities.</p>
             </div>
         </div>
+    </section>
 
-        <div class="nav-right">
-            <div class="nav-item">Smartphones</div>
-            <div class="nav-item">Accessories</div>
-            <div class="nav-item">Store Warranty</div>
+    <!-- Interactive Contact Form Wrapper Section -->
+    <section id="contact" class="container">
+        <h2 class="section-title">Place Your Order / Enquiry</h2>
+        <form class="contact-form" action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter full name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter contact number" required>
+            </div>
+            <div class="form-group">
+                <label for="requirement">Your Requirements</label>
+                <textarea id="requirement" name="requirement" rows="4" placeholder="E.g., Need 50 country eggs or wholesale chicken supply..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Inquiry</button>
+        </form>
+    </section>
+
+    <!-- Footer Copyright Statement -->
+    <footer>
+        <p>&copy; 2026 Village Poultry Farm. Built organically for rural ecosystems.</p>
+    </footer>
+
+</body>
+</html>
