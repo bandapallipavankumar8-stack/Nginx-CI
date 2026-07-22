@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrix Mobiles - KR Puram Store</title>
+    <title>Matrix Mobiles - All Brands Hub</title>
     <style>
         :root {
-            --primary-blue: #0071e3; /* Premium Blue */
-            --accent-orange: #ff9f00; /* Marketplace Orange */
+            --primary-blue: #0071e3;
+            --accent-orange: #ff9f00;
             --text-dark: #1d1d1f;
             --text-gray: #86868b;
             --bg-light: #f5f5f7;
@@ -122,6 +122,22 @@
             border-color: var(--primary-blue);
             color: var(--primary-blue);
             background: #f4f9ff;
+        }
+
+        /* Structural Container for Section Headings and Content Cards */
+        .brand-section-container {
+            margin-bottom: 35px;
+        }
+
+        .brand-heading-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin: 0 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--bg-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* Dynamic Grid Layout Components for Mobile Cards */
@@ -323,14 +339,3 @@
             <div class="nav-item">Smartphones</div>
             <div class="nav-item">Accessories</div>
             <div class="nav-item">Store Warranty</div>
-            <div class="nav-item" style="color: var(--primary-blue);">🛒 Bag (<span id="globalBagCounter">0</span>)</div>
-        </div>
-    </header>
-
-    <div class="main-container">
-        <div class="shop-layout">
-            
-            <!-- Left Panel Section: Dynamic Mobile Product Catalog -->
-            <div>
-                <!-- Brand Filtering Tabs Strip (UPDATED WITH ALL BRANDS) -->
-                <div class="filter-strip">
