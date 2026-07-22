@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swiggy Super Clone - KR Puram</title>
+    <title>Matrix Mobiles - KR Puram Store</title>
     <style>
         :root {
-            --swiggy-orange: #fc8019;
-            --text-dark: #282c3f;
-            --text-gray: #686b78;
-            --bg-light: #f4f4f6;
-            --border-color: #e9e9eb;
-            --veg-green: #0f8a65;
-            --nonveg-red: #e43b4f;
+            --primary-blue: #0071e3; /* Apple/Premium Blue */
+            --accent-orange: #ff9f00; /* Marketplace Orange */
+            --text-dark: #1d1d1f;
+            --text-gray: #86868b;
+            --bg-light: #f5f5f7;
+            --border-color: #d2d2d7;
+            --instock-green: #00875a;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #fff;
@@ -24,305 +24,311 @@
             scroll-behavior: smooth;
         }
 
-        /* Top Navigation Bar */
+        /* Top Navigation Header Bar */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 50px;
-            height: 80px;
-            background: #fff;
-            box-shadow: 0 15px 40px -20px rgba(40,44,63,.15);
+            height: 75px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 25px;
         }
 
-        .logo-section {
-            font-size: 26px;
-            font-weight: 900;
-            color: var(--swiggy-orange);
-            letter-spacing: -1.5px;
+        .brand-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
+            cursor: pointer;
         }
 
         .location-container {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
-        }
-
-        .location-bold {
-            font-weight: 700;
-            border-bottom: 2px solid var(--text-dark);
-            padding-bottom: 2px;
-        }
-
-        .location-gray {
-            color: var(--text-gray);
+            gap: 6px;
+            font-size: 13px;
+            background: var(--bg-light);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 35px;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .nav-item {
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            transition: color 0.2s;
         }
 
         .nav-item:hover {
-            color: var(--swiggy-orange);
+            color: var(--primary-blue);
         }
 
-        /* Main App Container */
+        /* Main Workspace Interface Container */
         .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 1250px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
 
-        /* Restaurant Hero Banner Section */
-        .restaurant-summary {
-            padding: 24px 0;
-            border-bottom: 1px dashed var(--border-color);
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .res-name { font-size: 32px; font-weight: 700; margin: 0 0 8px 0; color: #1c1c1c; }
-        .res-cuisines { font-size: 15px; color: var(--text-gray); margin: 0 0 4px 0; }
-        .res-locality { font-size: 14px; color: var(--text-gray); margin: 0; }
-
-        .res-rating-box {
-            border: 1px solid var(--border-color);
-            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-            border-radius: 6px;
-            padding: 8px;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .rating-green { color: #48c479; font-size: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 6px; margin-bottom: 6px; }
-        .total-ratings { font-size: 11px; color: var(--text-gray); font-weight: 600; }
-
-        /* Delivery Metas Row */
-        .delivery-meta {
-            display: flex;
-            gap: 24px;
-            font-weight: 700;
-            font-size: 15px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
-        }
-
-        /* Split Page Workspace Layout */
-        .split-layout {
+        /* Interface Split Screen Grid Layout */
+        .shop-layout {
             display: grid;
-            grid-template-columns: 2.2fr 1.2fr;
+            grid-template-columns: 2.3fr 1.1fr;
             gap: 40px;
         }
 
-        /* Filter Controls */
-        .filter-row {
+        /* Catalog Filters Strip */
+        .filter-strip {
             display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
-        .filter-btn {
-            padding: 8px 16px;
+        .filter-tag {
+            padding: 8px 18px;
             border: 1px solid var(--border-color);
             background: white;
-            border-radius: 20px;
+            border-radius: 6px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            color: var(--text-gray);
-        }
-
-        .filter-btn.active {
-            border-color: var(--text-dark);
             color: var(--text-dark);
-            background: var(--bg-light);
+            transition: all 0.2s;
         }
 
-        /* Menu List Management Components */
-        .category-block {
-            margin-bottom: 30px;
+        .filter-tag.active, .filter-tag:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            background: #f4f9ff;
         }
 
-        .category-title {
-            font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            color: var(--text-dark);
+        /* Dynamic Grid Layout Components for Mobile Cards */
+        .mobile-catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        .menu-item {
+        .mobile-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .item-details { flex: 1; padding-right: 30px; }
-        
-        /* Food Preference Badges */
-        .badge {
-            width: 14px;
-            height: 14px;
-            border-radius: 2px;
+        .mobile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .product-image-frame {
+            width: 100%;
+            height: 180px;
+            background-color: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 6px;
-        }
-        .badge-veg { border: 1px solid var(--veg-green); }
-        .badge-veg::after { content: ''; width: 7px; height: 7px; background: var(--veg-green); border-radius: 50%; }
-        .badge-nonveg { border: 1px solid var(--nonveg-red); }
-        .badge-nonveg::after { content: ''; width: 7px; height: 7px; background: var(--nonveg-red); border-radius: 50%; }
-
-        .item-title { font-size: 18px; font-weight: 600; margin: 0 0 4px 0; }
-        .item-cost { font-weight: 600; font-size: 15px; margin: 0 0 10px 0; }
-        .item-description { font-size: 14px; color: var(--text-gray); margin: 0; line-height: 1.4; }
-
-        .item-action-wrapper {
-            position: relative;
-            text-align: center;
-            width: 120px;
+            font-size: 13px;
+            color: var(--text-gray);
+            border: 1px solid #e5e5e7;
         }
 
-        .item-placeholder-img {
-            width: 118px;
-            height: 118px;
-            border-radius: 12px;
-            object-fit: cover;
-            background: #f9f9f9;
-            border: 1px solid var(--border-color);
+        .product-brand {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-gray);
+            margin-bottom: 4px;
         }
 
-        /* Advanced Plus Minus Adder Button Group */
-        .add-action-container {
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 36px;
-            background: #fff;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-            border-radius: 6px;
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 6px 0;
+            color: var(--text-dark);
+        }
+
+        .specs-bullet {
+            font-size: 12px;
+            color: var(--text-gray);
+            margin: 0 0 12px 0;
+            line-height: 1.4;
+        }
+
+        .product-stock {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--instock-green);
+            margin-bottom: 12px;
+        }
+
+        .price-row {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            font-weight: 700;
-            color: var(--veg-green);
-            overflow: hidden;
-            font-size: 14px;
+            align-items: center;
+            margin-top: auto;
         }
 
-        .add-label-btn {
-            width: 100%;
-            height: 100%;
-            background: none;
+        .product-cost {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .btn-buy {
+            background-color: var(--primary-blue);
+            color: white;
             border: none;
-            color: var(--veg-green);
+            padding: 8px 16px;
+            font-size: 13px;
             font-weight: 700;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
+            transition: background 0.2s;
         }
 
-        .quantity-control-btn {
-            width: 30px;
-            height: 100%;
-            background: none;
-            border: none;
-            color: #282c3f;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
+        .btn-buy:hover {
+            background-color: #005bb5;
         }
 
-        /* Swiggy High-Fidelity Cart Window Block */
-        .checkout-cart-panel {
+        /* Shopping Cart Panel Section */
+        .cart-panel {
             border: 1px solid var(--border-color);
-            background: #fff;
+            border-radius: 12px;
             padding: 24px;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             height: fit-content;
             position: sticky;
             top: 110px;
-            box-shadow: 0 4px 20px rgba(40,44,63,0.05);
         }
 
-        .cart-header-title { font-size: 22px; font-weight: 700; margin: 0 0 4px 0; }
-        .cart-res-sub { font-size: 13px; color: var(--text-gray); margin: 0 0 20px 0; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
-        
-        .cart-items-scrollbox { max-height: 300px; overflow-y: auto; margin-bottom: 20px; }
+        .cart-header-title { font-size: 20px; font-weight: 700; margin: 0 0 15px 0; border-bottom: 1px solid var(--bg-light); padding-bottom: 10px; }
+        .cart-items-box { max-height: 260px; overflow-y: auto; margin-bottom: 20px; }
         
         .cart-item-row {
             display: grid;
-            grid-template-columns: 1.2fr 1fr 0.6fr;
+            grid-template-columns: 1.2fr 0.6fr 0.7fr;
             align-items: center;
-            font-size: 14px;
-            margin-bottom: 16px;
+            font-size: 13px;
+            margin-bottom: 14px;
             font-weight: 600;
         }
 
-        .mini-qty-box {
+        .cart-qty-toggle {
             display: flex;
             align-items: center;
-            border: 1px solid #bebfc5;
-            width: 70px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 55px;
             justify-content: space-between;
             padding: 2px 6px;
-            font-size: 12px;
         }
-        .mini-qty-box span { cursor: pointer; color: var(--text-dark); font-weight: 800; }
+        .cart-qty-toggle span { cursor: pointer; font-weight: 800; color: var(--primary-blue); }
 
-        .bill-calculation-table {
-            border-top: 2px solid var(--text-dark);
+        .pricing-summary {
+            border-top: 1px dashed var(--border-color);
             padding-top: 15px;
             font-size: 14px;
-            color: #686b78;
+            color: var(--text-gray);
         }
 
-        .bill-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .bill-total-bold { font-size: 16px; font-weight: 700; color: var(--text-dark); border-top: 1px solid var(--border-color); padding-top: 14px; margin-top: 10px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .summary-total { font-size: 16px; font-weight: 700; color: var(--text-dark); border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: 10px; }
 
-        .btn-swiggy-pay {
+        .btn-checkout {
             width: 100%;
-            background-color: var(--swiggy-orange);
-            color: #fff;
+            background: var(--accent-orange);
+            color: white;
             font-weight: 700;
             border: none;
             padding: 14px;
-            font-size: 15px;
+            font-size: 14px;
+            border-radius: 6px;
             cursor: pointer;
             margin-top: 15px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            transition: box-shadow 0.2s;
         }
-        .btn-swiggy-pay:hover { box-shadow: 0 4px 14px rgba(252,128,25,0.4); }
+        .btn-checkout:hover { background: #e08b00; }
 
-        /* Global Status Tracking Canvas Modal */
-        .live-tracker-overlay {
+        /* Order Success Modal Canvas Overlay */
+        .order-modal-overlay {
             display: none;
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 5000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .order-success-card {
+            background: #fff;
+            padding: 40px;
+            width: 90%;
+            max-width: 440px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .btn-modal-close {
+            width: 100%; background: var(--text-dark); color: #fff; border:none; padding: 12px; margin-top: 25px; font-weight: 700; cursor: pointer; border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar Framework -->
+    <header>
+        <div class="nav-left">
+            <div class="brand-logo">matrix<span>mobiles</span></div>
+            <div class="location-container">
+                <span>📍</span> <strong>KR Puram Hub</strong>, Bangalore
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-item">Smartphones</div>
+            <div class="nav-item">Accessories</div>
+            <div class="nav-item">Store Warranty</div>
+            <div class="nav-item" style="color: var(--primary-blue);">🛒 Bag (<span id="globalBagCounter">0</span>)</div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="shop-layout">
+            
+            <!-- Left Panel Section: Dynamic Mobile Product Catalog -->
+            <div>
+                <!-- Brand Filtering Tabs Strip -->
+                <div class="filter-strip">
+                    <button class="filter-tag active" onclick="applyBrandFilter('all')">All Brands</button>
+                    <button class="filter-tag" onclick="applyBrandFilter('Apple')">Apple iPhone</button>
