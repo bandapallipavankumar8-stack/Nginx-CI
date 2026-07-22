@@ -300,18 +300,18 @@
     <!-- Interactive Contact Form Wrapper Section -->
     <section id="contact" class="container">
         <h2 class="section-title">Place Your Order / Enquiry</h2>
-        <form class="contact-form" action="#" method="POST">
+        <form class="contact-form" id="poultryForm">
             <div class="form-group">
                 <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter full name" required>
+                <input type="text" id="name" placeholder="Enter full name" required>
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter contact number" required>
+                <input type="tel" id="phone" placeholder="Enter contact number" required>
             </div>
             <div class="form-group">
                 <label for="requirement">Your Requirements</label>
-                <textarea id="requirement" name="requirement" rows="4" placeholder="E.g., Need 50 country eggs or wholesale chicken supply..." required></textarea>
+                <textarea id="requirement" rows="4" placeholder="E.g., Need 50 country eggs or wholesale chicken supply..." required></textarea>
             </div>
             <button type="submit" class="submit-btn">Send Inquiry</button>
         </form>
@@ -322,5 +322,11 @@
         <p>&copy; 2026 Village Poultry Farm. Built organically for rural ecosystems.</p>
     </footer>
 
-</body>
-</html>
+    <!-- Form Submit Automation Logic -->
+    <script>
+        document.getElementById('poultryForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop page refresh
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const requirements = document.getElementById('requirement').value;
