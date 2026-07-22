@@ -5,84 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poultry Farm Daily Log Form</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-        }
-        .form-container {
-            max-width: 600px;
-            background: #ffffff;
-            margin: 0 auto;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #27ae60;
-            padding-bottom: 10px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #34495e;
-        }
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #bdc3c7;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-        input:focus, select:focus, textarea:focus {
-            border-color: #27ae60;
-            outline: none;
-            box-shadow: 0 0 5px rgba(39, 174, 96, 0.3);
-        }
-        .row {
-            display: flex;
-            gap: 15px;
-        }
-        .row .form-group {
-            flex: 1;
-        }
-        .btn-submit {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.3s ease;
-        }
-        .btn-submit:hover {
-            background-color: #219150;
-        }
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; }
+        .form-container { max-width: 600px; background: #ffffff; margin: 0 auto; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #2c3e50; margin-bottom: 25px; border-bottom: 2px solid #27ae60; padding-bottom: 10px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #34495e; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #bdc3c7; border-radius: 4px; box-sizing: border-box; font-size: 14px; }
+        input:focus, select:focus, textarea:focus { border-color: #27ae60; outline: none; }
+        .row { display: flex; gap: 15px; }
+        .row .form-group { flex: 1; }
+        .btn-submit { background-color: #27ae60; color: white; border: none; padding: 12px 20px; font-size: 16px; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%; }
+        .btn-submit:hover { background-color: #219150; }
     </style>
 </head>
 <body>
 
 <div class="form-container">
     <h2>Poultry Farm Daily Tracking Log</h2>
-    <form action="#" method="POST">
+    <!-- The action points to your local Python saving script -->
+    <form action="/save-data" method="POST" id="poultryForm">
         
-        <!-- Date and Shed ID -->
         <div class="row">
             <div class="form-group">
                 <label for="log-date">Date:</label>
@@ -92,18 +34,16 @@
                 <label for="shed-id">Shed / House Number:</label>
                 <select id="shed-id" name="shed_id" required>
                     <option value="">-- Select Shed --</option>
-                    <option value="shed_1">Shed 01 (Layers)</option>
-                    <option value="shed_2">Shed 02 (Broilers)</option>
-                    <option value="shed_3">Shed 03 (Chicks)</option>
+                    <option value="Shed 01">Shed 01 (Layers)</option>
+                    <option value="Shed 02">Shed 02 (Broilers)</option>
                 </select>
             </div>
         </div>
 
-        <!-- Flock Tracking -->
         <div class="row">
             <div class="form-group">
                 <label for="total-birds">Current Bird Count:</label>
-                <input type="number" id="total-birds" name="total_birds" min="0" placeholder="e.g. 1500" required>
+                <input type="number" id="total-birds" name="total_birds" min="0" required>
             </div>
             <div class="form-group">
                 <label for="mortality">Mortality (Dead Birds):</label>
@@ -111,42 +51,28 @@
             </div>
         </div>
 
-        <!-- Production Details -->
         <div class="row">
             <div class="form-group">
                 <label for="eggs-collected">Good Eggs Collected:</label>
-                <input type="number" id="eggs-collected" name="eggs_collected" min="0" placeholder="0">
+                <input type="number" id="eggs-collected" name="eggs_collected" min="0" value="0">
             </div>
             <div class="form-group">
-                <label for="damaged-eggs">Damaged / Broken Eggs:</label>
+                <label for="damaged-eggs">Damaged Eggs:</label>
                 <input type="number" id="damaged-eggs" name="damaged_eggs" min="0" value="0">
             </div>
         </div>
 
-        <!-- Resource Management -->
         <div class="form-group">
             <label for="feed-consumed">Feed Consumed (in kg):</label>
-            <input type="number" id="feed-consumed" name="feed_consumed" step="0.1" min="0" placeholder="e.g. 120.5" required>
-        </div>
-
-        <!-- Health and Observations -->
-        <div class="form-group">
-            <label for="health-status">General Health Status:</label>
-            <select id="health-status" name="health_status">
-                <option value="healthy">Healthy & Active</option>
-                <option value="monitoring">Under Monitoring</option>
-                <option value="sick">Signs of Disease</option>
-            </select>
+            <input type="number" id="feed-consumed" name="feed_consumed" step="0.1" min="0" required>
         </div>
 
         <div class="form-group">
-            <label for="remarks">Notes / Vaccinations / Observations:</label>
-            <textarea id="remarks" name="remarks" rows="4" placeholder="Enter any extra details here..."></textarea>
+            <label for="remarks">Notes / Observations:</label>
+            <textarea id="remarks" name="remarks" rows="3" placeholder="Enter remarks..."></textarea>
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn-submit">Save Daily Log</button>
-
+        <button type="submit" class="btn-submit">Save Today's Data</button>
     </form>
 </div>
 
