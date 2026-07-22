@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zomato/Swiggy Express Clone</title>
+    <title>Zomato/Swiggy Express Clone - KR Puram</title>
     <style>
         :root {
             --primary-color: #cb202d; /* Zomato Red */
@@ -35,20 +35,45 @@
             z-index: 1000;
         }
 
-        .logo {
-            font-size: 28px;
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .restaurant-logo {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-color), var(--swiggy-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 800;
-            color: var(--primary-color);
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-dark);
             letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
         }
 
         .search-bar {
             flex: 0 1 500px;
             display: flex;
             border: 1px solid var(--border-color);
-            padding: 10px;
+            padding: 10px 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            background: #fff;
         }
 
         .search-bar input {
@@ -56,6 +81,20 @@
             border: none;
             outline: none;
             font-size: 14px;
+        }
+
+        .location-badge {
+            font-weight: 600;
+            cursor: pointer;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            background: var(--bg-light);
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
         }
 
         /* Main Container */
@@ -68,26 +107,28 @@
         /* Category Filter Pills */
         .categories {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 30px;
             overflow-x: auto;
             padding-bottom: 10px;
         }
 
         .category-pill {
-            padding: 10px 20px;
+            padding: 10px 22px;
             border: 1px solid var(--border-color);
             border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
             white-space: nowrap;
             transition: all 0.2s ease;
+            background: white;
+            font-weight: 500;
         }
 
         .category-pill:hover, .category-pill.active {
-            background-color: var(--primary-color);
+            background-color: var(--text-dark);
             color: white;
-            border-color: var(--primary-color);
+            border-color: var(--text-dark);
         }
 
         /* Two-Column App Layout */
@@ -99,13 +140,13 @@
 
         /* Restaurant & Menu Section */
         .restaurant-header {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
+            padding-bottom: 20px;
         }
 
-        .restaurant-name { font-size: 24px; font-weight: 700; margin: 0; }
-        .restaurant-cuisine { color: var(--text-gray); margin: 5px 0 0 0; font-size: 14px; }
+        .restaurant-name { font-size: 26px; font-weight: 700; margin: 0; }
+        .restaurant-cuisine { color: var(--text-gray); margin: 6px 0 0 0; font-size: 14px; }
 
         .menu-list {
             display: flex;
@@ -117,14 +158,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 24px 0;
             border-bottom: 1px solid var(--border-color);
         }
 
         .item-details { flex: 1; padding-right: 20px; }
-        .item-name { font-size: 18px; font-weight: 600; margin: 0 0 5px 0; }
-        .item-price { font-weight: 700; color: #333; margin: 0 0 8px 0; }
-        .item-desc { font-size: 13px; color: var(--text-gray); margin: 0; }
+        .item-name { font-size: 18px; font-weight: 600; margin: 0 0 6px 0; }
+        .item-price { font-weight: 700; color: #1c1c1c; margin: 0 0 8px 0; font-size: 16px; }
+        .item-desc { font-size: 13px; color: var(--text-gray); margin: 0; line-height: 1.4; }
 
         .item-action {
             position: relative;
@@ -132,11 +173,12 @@
         }
 
         .item-img {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             object-fit: cover;
             border-radius: 12px;
             background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
         }
 
         .btn-add {
@@ -146,18 +188,20 @@
             transform: translateX(-50%);
             background: white;
             color: #27ae60;
-            border: 1px solid var(--border-color);
-            padding: 6px 25px;
+            border: 1px solid #27ae60;
+            padding: 8px 28px;
             font-weight: 700;
             border-radius: 6px;
             cursor: pointer;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            font-size: 13px;
+            letter-spacing: 0.5px;
             transition: all 0.2s;
         }
 
         .btn-add:hover {
-            background: #f8f8f8;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background: #f4fff7;
+            transform: translateX(-50%) scale(1.03);
         }
 
         /* Cart Widget Section */
@@ -166,21 +210,21 @@
             border-radius: 12px;
             padding: 20px;
             background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
             height: fit-content;
             position: sticky;
             top: 100px;
         }
 
-        .cart-title { font-size: 20px; font-weight: 700; margin: 0 0 15px 0; border-bottom: 2px solid var(--bg-light); padding-bottom: 10px; }
-        .cart-items { max-height: 250px; overflow-y: auto; margin-bottom: 15px; }
+        .cart-title { font-size: 20px; font-weight: 700; margin: 0 0 15px 0; border-bottom: 2px solid var(--bg-light); padding-bottom: 12px; }
+        .cart-items { max-height: 280px; overflow-y: auto; margin-bottom: 15px; }
         
         .cart-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 14px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .cart-totals {
@@ -194,13 +238,14 @@
             background-color: var(--swiggy-orange);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 15px;
             font-size: 16px;
             font-weight: 700;
             border-radius: 8px;
             cursor: pointer;
             transition: background 0.2s;
-            margin-top: 15px;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
         }
 
         .btn-checkout:hover { background-color: #e16a0e; }
@@ -210,7 +255,7 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -218,91 +263,73 @@
 
         .tracker-card {
             background: white;
-            padding: 30px;
+            padding: 35px;
             border-radius: 16px;
             width: 90%;
-            max-width: 450px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 440px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
         }
 
         .status-step {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 18px;
+            margin-bottom: 25px;
             position: relative;
         }
 
         .status-dot {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             background: #bdc3c7;
-            margin-top: 4px;
+            margin-top: 3px;
+            transition: all 0.3s ease;
         }
 
-        .status-step.active .status-dot { background: #27ae60; box-shadow: 0 0 8px #27ae60; }
+        .status-step.active .status-dot { background: #27ae60; box-shadow: 0 0 10px rgba(39,174,96,0.6); }
         .status-step.active .status-text { font-weight: 700; color: #27ae60; }
+        .status-text { font-size: 15px; color: #555; }
         
         .btn-close {
-            background: #eee; border: none; padding: 10px; width: 100%; border-radius: 8px; cursor: pointer; font-weight: 600;
+            background: #f0f0f0; border: none; padding: 12px; width: 100%; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; margin-top: 10px;
         }
+        .btn-close:hover { background: #e5e5e5; }
     </style>
 </head>
 <body>
 
     <!-- Header Navigation -->
     <header>
-        <div class="logo">food⚡express</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search for restaurants, cuisines, or regional dishes...">
+        <div class="logo-section">
+            <!-- Circular Restaurant Logo Slot -->
+            <div class="restaurant-logo">FE</div>
+            <div class="logo">food<span>express</span></div>
         </div>
-        <div style="font-weight: 600; cursor: pointer;">📍 Bengaluru, KA</div>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search for dishes, restaurants or cuisines...">
+        </div>
+
+        <!-- Custom Regional Delivery Address Placement -->
+        <div class="location-badge">
+            <span>📍</span> KR Puram, Bangalore
+        </div>
     </header>
 
     <div class="container">
-        <!-- Dynamic Category Selector -->
+        <!-- Category Selector Pills -->
         <div class="categories">
             <div class="category-pill active">All Dishes</div>
             <div class="category-pill">Pure Veg</div>
-            <div class="category-pill">Biryani & Rice</div>
+            <div class="category-pill">Biryani Specialist</div>
+            <div class="category-pill">North Indian</div>
             <div class="category-pill">Fast Food</div>
-            <div class="category-pill">Desserts</div>
         </div>
 
-        <!-- Interface Grid Layout -->
+        <!-- Application Structural Split View Grid -->
         <div class="app-layout">
             
-            <!-- Left Side: Interactive Restaurant Menu List -->
+            <!-- Left Grid Pane: Digital Menu Display Layout -->
             <div>
                 <div class="restaurant-header">
                     <h1 class="restaurant-name">The Grand Imperial Kitchen</h1>
-                    <p class="restaurant-cuisine">North Indian • Biryani • Mughlai • ⭐ 4.4 (5,000+ ratings)</p>
-                </div>
-
-                <div class="menu-list">
-                    <!-- Food Item 1 -->
-                    <div class="menu-item">
-                        <div class="item-details">
-                            <h3 class="item-name">Premium Butter Chicken</h3>
-                            <p class="item-price">₹349</p>
-                            <p class="item-desc">Tender boneless chicken roasted in clay tandoor, simmered in a rich velvety tomato and cashew nut gravy base.</p>
-                        </div>
-                        <div class="item-action">
-                            <div class="item-img" style="background: #fce4ec; border-radius: 12px;"></div>
-                            <button class="btn-add" onclick="addToCart('Premium Butter Chicken', 349)">ADD</button>
-                        </div>
-                    </div>
-
-                    <!-- Food Item 2 -->
-                    <div class="menu-item">
-                        <div class="item-details">
-                            <h3 class="item-name">Hyderabadi Chicken Biryani</h3>
-                            <p class="item-price">₹299</p>
-                            <p class="item-desc">Fragrant basmati rice layered with spiced marinated chicken nuggets, slow-cooked in traditional dum style.</p>
-                        </div>
-                        <div class="item-action">
-                            <div class="item-img" style="background: #ffe0b2; border-radius: 12px;"></div>
-                            <button class="btn-add" onclick="addToCart('Hyderabadi Chicken Biryani', 299)">ADD</button>
-                        </div>
-                    </div>
-
