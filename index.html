@@ -3,156 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Express - Non-Veg Specials (KR Puram)</title>
+    <title>Swiggy Super Clone - KR Puram</title>
     <style>
         :root {
-            --primary-color: #cb202d; /* Zomato Red */
-            --swiggy-orange: #fc8019; /* Swiggy Orange */
-            --text-dark: #1c1c1c;
-            --text-gray: #696969;
-            --bg-light: #f8f8f8;
-            --border-color: #e8e8e8;
-            --nonveg-red: #bd3a3a;
+            --swiggy-orange: #fc8019;
+            --text-dark: #282c3f;
+            --text-gray: #686b78;
+            --bg-light: #f4f4f6;
+            --border-color: #e9e9eb;
+            --veg-green: #0f8a65;
+            --nonveg-red: #e43b4f;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'ProximaNova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #fff;
             color: var(--text-dark);
+            scroll-behavior: smooth;
         }
 
-        /* Navigation Header */
+        /* Top Navigation Bar */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 50px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 0 50px;
+            height: 80px;
+            background: #fff;
+            box-shadow: 0 15px 40px -20px rgba(40,44,63,.15);
             position: sticky;
             top: 0;
-            background: white;
             z-index: 1000;
         }
 
-        .logo-section {
+        .nav-left {
             display: flex;
             align-items: center;
-            gap: 12px;
-        }
-
-        .restaurant-logo {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--primary-color), var(--swiggy-orange));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            color: white;
-            font-size: 18px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-        }
-
-        .logo {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--text-dark);
-            letter-spacing: -1px;
-        }
-
-        .logo span {
-            color: var(--primary-color);
-        }
-
-        .search-bar {
-            flex: 0 1 500px;
-            display: flex;
-            border: 1px solid var(--border-color);
-            padding: 10px 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            background: #fff;
-        }
-
-        .search-bar input {
-            width: 100%;
-            border: none;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .location-badge {
-            font-weight: 600;
-            cursor: pointer;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 15px;
-            background: var(--bg-light);
-            padding: 8px 14px;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        /* Category Filter Pills */
-        .categories {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-
-        .category-pill {
-            padding: 10px 22px;
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-            background: white;
-            font-weight: 500;
-        }
-
-        .category-pill.active {
-            background-color: var(--text-dark);
-            color: white;
-            border-color: var(--text-dark);
-        }
-
-        /* Two-Column App Layout */
-        .app-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
             gap: 30px;
         }
 
-        /* Restaurant & Menu Section */
-        .restaurant-header {
-            margin-bottom: 25px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
+        .swiggy-logo {
+            height: 48px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
         }
 
-        .restaurant-name { font-size: 26px; font-weight: 700; margin: 0; }
-        .restaurant-cuisine { color: var(--text-gray); margin: 6px 0 0 0; font-size: 14px; }
+        .swiggy-logo:hover {
+            transform: scale(1.05);
+        }
 
-        .menu-list {
+        .location-container {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .location-bold {
+            font-weight: 700;
+            border-bottom: 2px solid var(--text-dark);
+            padding-bottom: 2px;
+        }
+
+        .location-gray {
+            color: var(--text-gray);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-item:hover {
+            color: var(--swiggy-orange);
+        }
+
+        /* Main App Grid View */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Restaurant Hero Banner Section */
+        .restaurant-summary {
+            padding: 24px 0;
+            border-bottom: 1px dashed var(--border-color);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .res-name { font-size: 32px; font-weight: 700; margin: 0 0 8px 0; color: #1c1c1c; }
+        .res-cuisines { font-size: 15px; color: var(--text-gray); margin: 0 0 4px 0; }
+        .res-locality { font-size: 14px; color: var(--text-gray); margin: 0; }
+
+        .res-rating-box {
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-radius: 6px;
+            padding: 8px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .rating-green { color: #48c479; font-size: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 6px; margin-bottom: 6px; }
+        .total-ratings { font-size: 11px; color: var(--text-gray); font-weight: 600; }
+
+        /* Delivery Metas Row */
+        .delivery-meta {
+            display: flex;
+            gap: 24px;
+            font-weight: 700;
+            font-size: 15px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        /* Split Page Workspace Layout */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 2.5fr 1.2fr;
+            gap: 40px;
+        }
+
+        /* Filter Controls */
+        .filter-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-gray);
+        }
+
+        .filter-btn.active {
+            border-color: var(--text-dark);
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Menu List Management Components */
+        .category-block {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--text-dark);
         }
 
         .menu-item {
@@ -163,180 +185,142 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .item-details { flex: 1; padding-right: 20px; }
+        .item-details { flex: 1; padding-right: 30px; }
         
-        /* Non-Veg Visual Indicator Badge */
-        .nonveg-indicator {
+        /* Food Preference Badges */
+        .badge {
             width: 14px;
             height: 14px;
-            border: 1px solid var(--nonveg-red);
+            border-radius: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
-        .nonveg-indicator::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background-color: var(--nonveg-red);
-            border-radius: 50%;
-        }
+        .badge-veg { border: 1px solid var(--veg-green); }
+        .badge-veg::after { content: ''; width: 7px; height: 7px; background: var(--veg-green); border-radius: 50%; }
+        .badge-nonveg { border: 1px solid var(--nonveg-red); }
+        .badge-nonveg::after { content: ''; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 7px solid var(--nonveg-red); }
 
-        .item-name { font-size: 18px; font-weight: 600; margin: 0 0 6px 0; }
-        .item-price { font-weight: 700; color: #1c1c1c; margin: 0 0 8px 0; font-size: 16px; }
-        .item-desc { font-size: 13px; color: var(--text-gray); margin: 0; line-height: 1.4; }
+        .item-title { font-size: 18px; font-weight: 600; margin: 0 0 4px 0; }
+        .item-cost { font-weight: 600; font-size: 15px; margin: 0 0 10px 0; }
+        .item-description { font-size: 14px; color: var(--text-gray); margin: 0; line-height: 1.4; }
 
-        .item-action {
+        .item-action-wrapper {
             position: relative;
             text-align: center;
+            width: 120px;
         }
 
-        .item-img {
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
+        .item-placeholder-img {
+            width: 118px;
+            height: 118px;
             border-radius: 12px;
-            background-color: var(--bg-light);
+            object-fit: cover;
+            background: #ebebeb;
             border: 1px solid var(--border-color);
         }
 
-        .btn-add {
+        /* Advanced Plus Minus Adder Button Group */
+        .add-action-container {
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            background: white;
-            color: #27ae60;
-            border: 1px solid #27ae60;
-            padding: 8px 28px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            transition: all 0.2s;
-        }
-
-        .btn-add:hover {
-            background: #f4fff7;
-            transform: translateX(-50%) scale(1.03);
-        }
-
-        /* Cart Widget Section */
-        .cart-box {
+            width: 100px;
+            height: 36px;
+            background: #fff;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 700;
+            color: var(--veg-green);
+            overflow: hidden;
+            font-size: 14px;
+        }
+
+        .add-label-btn {
+            width: 100%;
+            height: 100%;
+            background: none;
+            border: none;
+            color: var(--veg-green);
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .quantity-control-btn {
+            width: 30px;
+            height: 100%;
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .quantity-control-btn:hover { color: var(--veg-green); }
+
+        /* Swiggy High-Fidelity Cart Window Block */
+        .checkout-cart-panel {
+            border: 1px solid var(--border-color);
+            background: #fff;
+            padding: 24px;
             height: fit-content;
             position: sticky;
-            top: 100px;
+            top: 110px;
+            box-shadow: 0 4px 20px rgba(40,44,63,0.05);
         }
 
-        .cart-title { font-size: 20px; font-weight: 700; margin: 0 0 15px 0; border-bottom: 2px solid var(--bg-light); padding-bottom: 12px; }
-        .cart-items { max-height: 280px; overflow-y: auto; margin-bottom: 15px; }
+        .cart-header-title { font-size: 22px; font-weight: 700; margin: 0 0 4px 0; }
+        .cart-res-sub { font-size: 13px; color: var(--text-gray); margin: 0 0 20px 0; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
         
-        .cart-row {
-            display: flex;
-            justify-content: space-between;
+        .cart-items-scrollbox { max-height: 300px; overflow-y: auto; margin-bottom: 20px; }
+        
+        .cart-item-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 0.8fr;
             align-items: center;
             font-size: 14px;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+            font-weight: 600;
         }
 
-        .cart-totals {
-            border-top: 1px dashed var(--border-color);
+        .mini-qty-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid #bebfc5;
+            width: 70px;
+            justify-content: space-between;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+        .mini-qty-box span { cursor: pointer; color: var(--text-gray); font-weight: 800; }
+
+        .bill-calculation-table {
+            border-top: 2px solid var(--text-dark);
             padding-top: 15px;
-            margin-top: 15px;
+            font-size: 14px;
+            color: #686b78;
         }
 
-        .btn-checkout {
+        .bill-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .bill-total-bold { font-size: 16px; font-weight: 700; color: var(--text-dark); border-top: 1px solid var(--border-color); padding-top: 14px; margin-top: 10px; }
+
+        .btn-swiggy-pay {
             width: 100%;
             background-color: var(--swiggy-orange);
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 16px;
+            color: #fff;
             font-weight: 700;
-            border-radius: 8px;
+            border: none;
+            padding: 14px;
+            font-size: 15px;
             cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 10px;
+            margin-top: 15px;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
+            transition: box-shadow 0.2s;
         }
-
-        .btn-checkout:hover { background-color: #e16a0e; }
-
-        /* Delivery Tracker Modal Overlay */
-        .tracker-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .tracker-card {
-            background: white;
-            padding: 35px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 440px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-        }
-
-        .status-step {
-            display: flex;
-            gap: 18px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .status-dot {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #bdc3c7;
-            margin-top: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .status-step.active .status-dot { background: #27ae60; box-shadow: 0 0 10px rgba(39,174,96,0.6); }
-        .status-step.active .status-text { font-weight: 700; color: #27ae60; }
-        .status-text { font-size: 15px; color: #555; }
-        
-        .btn-close {
-            background: #f0f0f0; border: none; padding: 12px; width: 100%; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; margin-top: 10px;
-        }
-        .btn-close:hover { background: #e5e5e5; }
-    </style>
-</head>
-<body>
-
-    <!-- Header Navigation -->
-    <header>
-        <div class="logo-section">
-            <div class="restaurant-logo">FE</div>
-            <div class="logo">food<span>express</span></div>
-        </div>
-        
-        <div class="search-bar">
-            <input type="text" placeholder="Search for dishes, restaurants or cuisines...">
-        </div>
-
-        <div class="location-badge">
-            <span>📍</span> KR Puram, Bangalore
-        </div>
-    </header>
-
-    <div class="container">
-        <!-- Category Selector Pills -->
-        <div class="categories">
-            <div class="category-pill active">All Dishes (Non-Veg)</div>
-            <div class="category-pill">Biryani Specialist</div>
-            <div class="category-pill">Starters</div>
