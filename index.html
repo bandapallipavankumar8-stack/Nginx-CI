@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zomato/Swiggy Express Clone - KR Puram</title>
+    <title>Food Express - Non-Veg Specials (KR Puram)</title>
     <style>
         :root {
             --primary-color: #cb202d; /* Zomato Red */
@@ -12,6 +12,7 @@
             --text-gray: #696969;
             --bg-light: #f8f8f8;
             --border-color: #e8e8e8;
+            --nonveg-red: #bd3a3a;
         }
 
         body {
@@ -125,7 +126,7 @@
             font-weight: 500;
         }
 
-        .category-pill:hover, .category-pill.active {
+        .category-pill.active {
             background-color: var(--text-dark);
             color: white;
             border-color: var(--text-dark);
@@ -163,6 +164,25 @@
         }
 
         .item-details { flex: 1; padding-right: 20px; }
+        
+        /* Non-Veg Visual Indicator Badge */
+        .nonveg-indicator {
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--nonveg-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+        .nonveg-indicator::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: var(--nonveg-red);
+            border-radius: 50%;
+        }
+
         .item-name { font-size: 18px; font-weight: 600; margin: 0 0 6px 0; }
         .item-price { font-weight: 700; color: #1c1c1c; margin: 0 0 8px 0; font-size: 16px; }
         .item-desc { font-size: 13px; color: var(--text-gray); margin: 0; line-height: 1.4; }
@@ -301,7 +321,6 @@
     <!-- Header Navigation -->
     <header>
         <div class="logo-section">
-            <!-- Circular Restaurant Logo Slot -->
             <div class="restaurant-logo">FE</div>
             <div class="logo">food<span>express</span></div>
         </div>
@@ -310,7 +329,6 @@
             <input type="text" placeholder="Search for dishes, restaurants or cuisines...">
         </div>
 
-        <!-- Custom Regional Delivery Address Placement -->
         <div class="location-badge">
             <span>📍</span> KR Puram, Bangalore
         </div>
@@ -319,17 +337,6 @@
     <div class="container">
         <!-- Category Selector Pills -->
         <div class="categories">
-            <div class="category-pill active">All Dishes</div>
-            <div class="category-pill">Pure Veg</div>
+            <div class="category-pill active">All Dishes (Non-Veg)</div>
             <div class="category-pill">Biryani Specialist</div>
-            <div class="category-pill">North Indian</div>
-            <div class="category-pill">Fast Food</div>
-        </div>
-
-        <!-- Application Structural Split View Grid -->
-        <div class="app-layout">
-            
-            <!-- Left Grid Pane: Digital Menu Display Layout -->
-            <div>
-                <div class="restaurant-header">
-                    <h1 class="restaurant-name">The Grand Imperial Kitchen</h1>
+            <div class="category-pill">Starters</div>
