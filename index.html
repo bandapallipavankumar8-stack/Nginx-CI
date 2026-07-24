@@ -3,44 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Sports Club</title>
+    <title>Apex Sports Shop</title>
     <style>
-        /* Base Reset & Variables */
+        /* Base Styling & Variables */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         :root {
-            --primary: #ff4a17;
-            --dark: #111b21;
-            --light: #f4f7f6;
+            --primary: #e63946;
+            --dark: #1d3557;
+            --light-bg: #f8f9fa;
             --white: #ffffff;
-            --gray: #666;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
         }
 
         body {
-            background-color: var(--light);
+            background-color: var(--light-bg);
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        /* Navigation */
+        /* Navigation Bar */
         header {
             background-color: var(--dark);
-            padding: 20px 10%;
+            color: var(--white);
+            padding: 15px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .logo {
-            color: var(--white);
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .logo span {
             color: var(--primary);
@@ -48,151 +52,162 @@
         nav ul {
             display: flex;
             list-style: none;
-        }
-        nav ul li {
-            margin-left: 20px;
+            gap: 25px;
         }
         nav ul li a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
         nav ul li a:hover {
             color: var(--primary);
         }
+        .cart-icon {
+            font-size: 18px;
+            cursor: pointer;
+            position: relative;
+            background: none;
+            border: none;
+            color: white;
+            font-weight: bold;
+        }
+        .cart-count {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 11px;
+            position: absolute;
+            top: -10px;
+            right: -15px;
+        }
 
-        /* Hero Section */
+        /* Hero Promo Section */
         .hero {
-            background: linear-gradient(rgba(17, 27, 33, 0.7), rgba(17, 27, 33, 0.7)), 
+            background: linear-gradient(rgba(29, 53, 87, 0.75), rgba(29, 53, 87, 0.75)), 
                         url('https://unsplash.com') no-repeat center center/cover;
-            height: 70vh;
+            height: 40vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
             color: var(--white);
-            padding: 0 20px;
+            text-align: center;
+            padding: 20px;
         }
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
+            font-size: 42px;
             text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
         .hero p {
-            font-size: 18px;
-            margin-bottom: 25px;
-            max-width: 600px;
-        }
-        .btn {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background-color: #e03808;
+            font-size: 16px;
+            margin-bottom: 20px;
+            max-width: 500px;
         }
 
-        /* Main Container layout */
-        .section-container {
-            padding: 60px 10%;
+        /* Main Store Layout */
+        .shop-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
         .section-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 40px;
+            font-size: 26px;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            width: 50px;
-            height: 4px;
-            background-color: var(--primary);
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
         }
 
-        /* Events Schedule Section */
-        .events-list {
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-        .event-row {
+        /* Product Grid */
+        .product-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            align-items: center;
-        }
-        .event-row:last-child {
-            border-bottom: none;
-        }
-        .event-date {
-            font-weight: bold;
-            color: var(--primary);
-        }
-        .event-title {
-            font-size: 18px;
-            font-weight: 600;
-        }
-        .event-time {
-            text-align: right;
-            color: var(--gray);
-        }
-
-        /* Membership Cards Grid */
-        .membership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
-        .card {
-            background-color: var(--white);
-            padding: 40px 30px;
+        .product-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 5px solid transparent;
-            transition: transform 0.3s;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .card:hover {
+        .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
-        .card.featured {
-            border-top-color: var(--primary);
-        }
-        .card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-        .card .price {
-            font-size: 36px;
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 4px 10px;
+            font-size: 12px;
             font-weight: bold;
-            margin-bottom: 20px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #eceff1;
+        }
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product-category {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
             color: var(--dark);
         }
-        .card .price span {
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+        .product-price span {
             font-size: 14px;
-            color: var(--gray);
+            text-decoration: line-through;
+            color: var(--text-muted);
+            margin-left: 8px;
+            font-weight: 400;
         }
-        .card ul {
-            list-style: none;
-            margin-bottom: 30px;
-            color: var(--gray);
+        .add-btn {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
         }
-        .card ul li {
-            margin-bottom: 10px;
+        .add-btn:hover {
+            background-color: #2b4f7c;
         }
 
         /* Footer */
@@ -200,117 +215,100 @@
             background-color: var(--dark);
             color: var(--white);
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 25px;
+            margin-top: 60px;
             font-size: 14px;
         }
 
-        /* Responsive Breakpoint */
+        /* Mobile Optimization */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
                 gap: 15px;
+                padding: 15px 5%;
             }
             .hero h1 {
-                font-size: 32px;
+                font-size: 30px;
             }
-            .event-row {
-                grid-template-columns: 1fr;
-                gap: 5px;
-                text-align: center;
-            }
-            .event-time {
-                text-align: center;
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header & Navigation -->
+    <!-- Navigation Header -->
     <header>
-        <div class="logo">APEX<span>SPORTS</span></div>
+        <div class="logo">Pro<span>Grid</span> Sports</div>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#events">Schedule</a></li>
-                <li><a href="#membership">Membership</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Apparel</a></li>
+                <li><a href="#">Equipment</a></li>
+                <li><a href="#">Shoes</a></li>
             </ul>
         </nav>
+        <button class="cart-icon">🛒 Cart <span class="cart-count">2</span></button>
     </header>
 
-    <!-- Hero Content -->
-    <section class="hero" id="home">
-        <h1>Unleash Your Potential</h1>
-        <p>Join the ultimate community of athletes. Access premium facilities, professional coaching leagues, and training tracks designed for all skill levels.</p>
-        <a href="#membership" class="btn">Join Club</a>
+    <!-- Hero Promotional Banner -->
+    <section class="hero">
+        <h1>Gear Up For Peak Performance</h1>
+        <p>Premium sports equipment, sportswear, and performance footwear designed for athletes who refuse to settle.</p>
     </section>
 
-    <!-- Schedule Section -->
-    <section class="section-container" id="events">
-        <h2 class="section-title">Upcoming Club Events</h2>
-        <div class="events-list">
-            <div class="event-row">
-                <div class="event-date">AUG 12</div>
-                <div class="event-title">Open Football Tournament</div>
-                <div class="event-time">09:00 AM</div>
+    <!-- Main Shop Section -->
+    <main class="shop-container">
+        <h2 class="section-title">Trending Equipment & Gear</h2>
+        
+        <div class="product-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <span class="badge">Sale</span>
+                <img src="https://unsplash.com" alt="Running Shoes" class="product-img">
+                <div class="product-info">
+                    <span class="product-category">Footwear</span>
+                    <h3 class="product-title">AeroStride Running Shoes</h3>
+                    <div class="product-price">₹4,999 <span>₹6,499</span></div>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
             </div>
-            <div class="event-row">
-                <div class="event-date">AUG 19</div>
-                <div class="event-title">3v3 Basketball Showdown</div>
-                <div class="event-time">04:00 PM</div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <img src="https://unsplash.com" alt="Basketball" class="product-img">
+                <div class="product-info">
+                    <span class="product-category">Equipment</span>
+                    <h3 class="product-title">Official Match Basketball</h3>
+                    <div class="product-price">₹2,499</div>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
             </div>
-            <div class="event-row">
-                <div class="event-date">SEP 02</div>
-                <div class="event-title">Track & Field Community Meet</div>
-                <div class="event-time">07:30 AM</div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <span class="badge">New</span>
+                <img src="https://unsplash.com" alt="Dumbbells" class="product-img">
+                <div class="product-info">
+                    <span class="product-category">Fitness</span>
+                    <h3 class="product-title">Hex Rubber Dumbbell Set (10kg)</h3>
+                    <div class="product-price">₹3,199</div>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card">
+                <img src="https://unsplash.com" alt="Training Jersey" class="product-img">
+                <div class="product-info">
+                    <span class="product-category">Apparel</span>
+                    <h3 class="product-title">Dry-Fit Training Jersey</h3>
+                    <div class="product-price">₹1,299</div>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Pricing/Membership Section -->
-    <section class="section-container" id="membership">
-        <h2 class="section-title">Membership Plans</h2>
-        <div class="membership-grid">
-            <div class="card">
-                <h3>Basic Pass</h3>
-                <div class="price">$29<span>/mo</span></div>
-                <ul>
-                    <li>Access to fields & courts</li>
-                    <li>Standard locker room access</li>
-                    <li>1 Guest pass per month</li>
-                </ul>
-                <a href="#" class="btn">Get Started</a>
-            </div>
-            <div class="card featured">
-                <h3>All-Star Team</h3>
-                <div class="price">$59<span>/mo</span></div>
-                <ul>
-                    <li>Unlimited facility access</li>
-                    <li>Free entry to club tournaments</li>
-                    <li>2 Training sessions with coach</li>
-                    <li>Priority court booking</li>
-                </ul>
-                <a href="#" class="btn">Get Started</a>
-            </div>
-            <div class="card">
-                <h3>Elite Trainer</h3>
-                <div class="price">$99<span>/mo</span></div>
-                <ul>
-                    <li>All Pro benefits included</li>
-                    <li>Daily personal coaching session</li>
-                    <li>Customized nutrition plan</li>
-                    <li>Exclusive merchandise discounts</li>
-                </ul>
-                <a href="#" class="btn">Get Started</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Copyright -->
-    <footer>
-        <p>&copy; 2026 Apex Sports Club. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
