@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Zone | Best Smartphone Deals</title>
+    <title>Ironclad Armory | Premium Protective Gear</title>
     <style>
-        /* Global Styles */
+        /* Global Reset & Theme */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #f4f6f9;
-            color: #333;
+            background-color: #111116;
+            color: #eeeeee;
         }
         a {
             text-decoration: none;
             color: inherit;
         }
 
-        /* Header & Navigation */
+        /* Navigation Bar */
         header {
-            background-color: #1a1a2e;
-            color: white;
-            padding: 15px 20px;
+            background-color: #1a1a24;
+            border-bottom: 2px solid #ff4a4a;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -33,174 +33,253 @@
             top: 0;
             z-index: 100;
         }
-        .logo {
+        .brand-logo {
             font-size: 24px;
-            font-weight: bold;
-            color: #e94560;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ff4a4a;
+            text-transform: uppercase;
         }
         nav ul {
             display: flex;
             list-style: none;
         }
         nav ul li {
-            margin-left: 20px;
+            margin-left: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s;
         }
         nav ul li a:hover {
-            color: #e94560;
+            color: #ff4a4a;
         }
 
-        /* Hero Banner */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://unsplash.com') no-repeat center center/cover;
-            height: 350px;
+        /* Hero Showcase Section */
+        .hero-banner {
+            background: linear-gradient(rgba(17, 17, 22, 0.4), rgba(17, 17, 22, 0.95)), 
+                        url('https://unsplash.com') no-repeat center center/cover;
+            height: 450px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
             text-align: center;
             padding: 20px;
         }
-        .hero h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
+        .hero-banner h1 {
+            font-size: 48px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
-        .hero p {
+        .hero-banner p {
             font-size: 18px;
-            margin-bottom: 20px;
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: #cccccc;
         }
-        .btn {
-            background-color: #e94560;
+        .cta-btn {
+            background-color: #ff4a4a;
             color: white;
-            padding: 10px 25px;
+            padding: 12px 35px;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
         }
-        .btn:hover {
-            background-color: #0f3460;
+        .cta-btn:hover {
+            background-color: #d13232;
+            transform: scale(1.05);
         }
 
-        /* Product Section */
-        .container {
+        /* Armor Grid Layout */
+        .content-wrapper {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 50px auto;
             padding: 0 20px;
         }
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-            position: relative;
+        .section-heading {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+            border-left: 5px solid #ff4a4a;
+            padding-left: 15px;
         }
-        .grid {
+        .armor-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-        .product-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.2s;
+        .armor-card {
+            background-color: #1a1a24;
+            border: 1px solid #2d2d3d;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s;
         }
-        .product-card:hover {
+        .armor-card:hover {
+            border-color: #ff4a4a;
             transform: translateY(-5px);
         }
-        .product-img {
-            max-width: 100%;
-            height: 200px;
-            object-fit: contain;
-            margin-bottom: 15px;
+        .image-holder {
+            width: 100%;
+            height: 250px;
+            background-color: #111116;
+            overflow: hidden;
         }
-        .product-name {
-            font-size: 18px;
+        .armor-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        .armor-card:hover .armor-img {
+            opacity: 1;
+        }
+        .info-panel {
+            padding: 25px;
+        }
+        .item-category {
+            color: #ff4a4a;
+            font-size: 12px;
             font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        .item-title {
+            font-size: 20px;
+            font-weight: 700;
             margin-bottom: 10px;
         }
-        .product-price {
-            color: #e94560;
-            font-size: 20px;
+        .item-desc {
+            font-size: 14px;
+            color: #aaaaaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .action-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .item-spec {
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 15px;
+            color: #ffffff;
+            background: #2d2d3d;
+            padding: 4px 10px;
+            border-radius: 3px;
         }
-        .buy-btn {
-            background-color: #0f3460;
-            color: white;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
+        .view-btn {
+            background: transparent;
+            color: #ff4a4a;
+            border: 1px solid #ff4a4a;
+            padding: 8px 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
             cursor: pointer;
+            transition: background 0.3s, color 0.3s;
         }
-        .buy-btn:hover {
-            background-color: #e94560;
+        .view-btn:hover {
+            background: #ff4a4a;
+            color: white;
         }
 
         /* Footer */
         footer {
-            background-color: #1a1a2e;
-            color: white;
+            background-color: #0b0b0e;
+            border-top: 1px solid #2d2d3d;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 30px;
+            margin-top: 60px;
             font-size: 14px;
+            color: #666666;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header Navigation -->
     <header>
-        <div class="logo">MobileZone</div>
+        <div class="brand-logo">Ironclad</div>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Phones</a></li>
-                <li><a href="#">Accessories</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Catalog</a></li>
+                <li><a href="#">Ballistic</a></li>
+                <li><a href="#">Medieval</a></li>
+                <li><a href="#">Custom Build</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="hero">
-        <h1>Latest Smartphones. Unbeatable Prices.</h1>
-        <p>Get up to 20% off on newly launched flagship models this week.</p>
-        <button class="btn">Shop Now</button>
+    <!-- Main Hero Banner -->
+    <section class="hero-banner">
+        <h1>Forged For Protection</h1>
+        <p>Engineered to endure the harshest conditions. Explore our high-grade tactical plates, shields, and historical replica gear.</p>
+        <button class="cta-btn">View Inventory</button>
     </section>
 
-    <!-- Products Grid -->
-    <main class="container">
-        <h2 class="section-title">Featured Smartphones</h2>
-        <div class="grid">
+    <!-- Showcase Grid -->
+    <main class="content-wrapper">
+        <h2 class="section-heading">Featured Gear</h2>
+        <div class="armor-grid">
             
-            <!-- Product 1 -->
-            <div class="product-card">
-                <img class="product-img" src="https://unsplash.com" alt="Smartphone Alpha">
-                <div class="product-name">Apex Phone 15 Pro</div>
-                <div class="product-price">$999</div>
-                <button class="buy-btn">Add to Cart</button>
+            <!-- Armor Card 1 -->
+            <div class="armor-card">
+                <div class="image-holder">
+                    <img class="armor-img" src="https://unsplash.com" alt="Tactical Vest">
+                </div>
+                <div class="info-panel">
+                    <div class="item-category">Modern Ballistic</div>
+                    <div class="item-title">Vanguard Plate Carrier</div>
+                    <p class="item-desc">Heavy-duty laser-cut MOLLE system engineered for military operations. Built to house Level IV ceramic ballistic plates safely.</p>
+                    <div class="action-container">
+                        <span class="item-spec">Level IV Max</span>
+                        <button class="view-btn">Inspect</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Product 2 -->
-            <div class="product-card">
-                <img class="product-img" src="https://unsplash.com" alt="Smartphone Beta">
-                <div class="product-name">Galaxy X Ultra</div>
-                <div class="product-price">$1,199</div>
-                <button class="buy-btn">Add to Cart</button>
+            <!-- Armor Card 2 -->
+            <div class="armor-card">
+                <div class="image-holder">
+                    <img class="armor-img" src="https://unsplash.com" alt="Medieval Helmet">
+                </div>
+                <div class="info-panel">
+                    <div class="item-category">Historical Replica</div>
+                    <div class="item-title">Paladin Steel Great Helm</div>
+                    <p class="item-desc">Hand-forged 14-gauge high-carbon steel construction. Perfect layout for full-contact combat sports and museum display.</p>
+                    <div class="action-container">
+                        <span class="item-spec">14-Gauge</span>
+                        <button class="view-btn">Inspect</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img class="product-img" src="https://unsplash.com" alt="Smartphone Gamma">
-                <div class="product-name">Nova Lite 10</div>
-                <div class="product-price">$450</div>
-                <button class="buy-btn">Add to Cart</button>
+            <!-- Armor Card 3 -->
+            <div class="armor-card">
+                <div class="image-holder">
+                    <img class="armor-img" src="https://unsplash.com" alt="Cyber Armor">
+                </div>
+                <div class="info-panel">
+                    <div class="item-category">Sci-Fi / Concept</div>
+                    <div class="item-title">Apex Exo-Shell Mk VII</div>
+                    <p class="item-desc">Lightweight, impact-resistant polycarbonate plating designed for cinematic cosplay production and extreme styling needs.</p>
+                    <div class="action-container">
+                        <span class="item-spec">Polycarb-6</span>
+                        <button class="view-btn">Inspect</button>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -208,7 +287,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 MobileZone Store. All rights reserved.</p>
+        <p>&copy; 2026 Ironclad Armory Industries. All assets simulated for configuration purposes.</p>
     </footer>
 
 </body>
