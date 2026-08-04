@@ -1,2 +1,2 @@
-Added comment for package
+Added comment
 
