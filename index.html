@@ -3,312 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Sports Shop</title>
+    <title>Mobile Zone | Best Smartphone Deals</title>
     <style>
-        /* Base Styling & Variables */
+        /* Global Styles */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
-        :root {
-            --primary: #e63946;
-            --dark: #1d3557;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --text-muted: #6c757d;
-            --border-color: #dee2e6;
-        }
-
         body {
-            background-color: var(--light-bg);
-            color: var(--dark);
-            line-height: 1.5;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        /* Navigation Bar */
+        /* Header & Navigation */
         header {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 15px 8%;
+            background-color: #1a1a2e;
+            color: white;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
         }
         .logo {
-            font-size: 22px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .logo span {
-            color: var(--primary);
+            font-size: 24px;
+            font-weight: bold;
+            color: #e94560;
         }
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
         }
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
+        nav ul li {
+            margin-left: 20px;
         }
         nav ul li a:hover {
-            color: var(--primary);
-        }
-        .cart-icon {
-            font-size: 18px;
-            cursor: pointer;
-            position: relative;
-            background: none;
-            border: none;
-            color: white;
-            font-weight: bold;
-        }
-        .cart-count {
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 11px;
-            position: absolute;
-            top: -10px;
-            right: -15px;
+            color: #e94560;
         }
 
-        /* Hero Promo Section */
+        /* Hero Banner */
         .hero {
-            background: linear-gradient(rgba(29, 53, 87, 0.75), rgba(29, 53, 87, 0.75)), 
-                        url('https://unsplash.com') no-repeat center center/cover;
-            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://unsplash.com') no-repeat center center/cover;
+            height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: var(--white);
+            color: white;
             text-align: center;
             padding: 20px;
         }
         .hero h1 {
-            font-size: 42px;
-            text-transform: uppercase;
+            font-size: 40px;
             margin-bottom: 10px;
-            letter-spacing: 1px;
         }
         .hero p {
-            font-size: 16px;
+            font-size: 18px;
             margin-bottom: 20px;
-            max-width: 500px;
+        }
+        .btn {
+            background-color: #e94560;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #0f3460;
         }
 
-        /* Main Store Layout */
-        .shop-container {
+        /* Product Section */
+        .container {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
         }
         .section-title {
-            font-size: 26px;
+            text-align: center;
             margin-bottom: 30px;
-            text-transform: uppercase;
-            border-left: 5px solid var(--primary);
-            padding-left: 15px;
+            font-size: 28px;
+            position: relative;
         }
-
-        /* Product Grid */
-        .product-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
         .product-card {
-            background: var(--white);
-            border: 1px solid var(--border-color);
+            background: white;
+            padding: 20px;
             border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.2s;
         }
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-        }
-        .badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 4px 10px;
-            font-size: 12px;
-            font-weight: bold;
-            border-radius: 4px;
-            text-transform: uppercase;
         }
         .product-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background-color: #eceff1;
-        }
-        .product-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-        .product-category {
-            font-size: 12px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        .product-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        .product-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-top: auto;
+            max-width: 100%;
+            height: 200px;
+            object-fit: contain;
             margin-bottom: 15px;
         }
-        .product-price span {
-            font-size: 14px;
-            text-decoration: line-through;
-            color: var(--text-muted);
-            margin-left: 8px;
-            font-weight: 400;
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
-        .add-btn {
-            background-color: var(--dark);
-            color: var(--white);
-            text-align: center;
-            padding: 10px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.2s;
+        .product-price {
+            color: #e94560;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .buy-btn {
+            background-color: #0f3460;
+            color: white;
             width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
-        .add-btn:hover {
-            background-color: #2b4f7c;
+        .buy-btn:hover {
+            background-color: #e94560;
         }
 
         /* Footer */
         footer {
-            background-color: var(--dark);
-            color: var(--white);
+            background-color: #1a1a2e;
+            color: white;
             text-align: center;
-            padding: 25px;
-            margin-top: 60px;
+            padding: 20px;
+            margin-top: 40px;
             font-size: 14px;
-        }
-
-        /* Mobile Optimization */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 5%;
-            }
-            .hero h1 {
-                font-size: 30px;
-            }
-            .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 15px;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Header -->
+    <!-- Header -->
     <header>
-        <div class="logo">Pro<span>Grid</span> Sports</div>
+        <div class="logo">MobileZone</div>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Apparel</a></li>
-                <li><a href="#">Equipment</a></li>
-                <li><a href="#">Shoes</a></li>
+                <li><a href="#">Phones</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <button class="cart-icon">🛒 Cart <span class="cart-count">2</span></button>
     </header>
 
-    <!-- Hero Promotional Banner -->
+    <!-- Hero Banner -->
     <section class="hero">
-        <h1>Gear Up For Peak Performance</h1>
-        <p>Premium sports equipment, sportswear, and performance footwear designed for athletes who refuse to settle.</p>
+        <h1>Latest Smartphones. Unbeatable Prices.</h1>
+        <p>Get up to 20% off on newly launched flagship models this week.</p>
+        <button class="btn">Shop Now</button>
     </section>
 
-    <!-- Main Shop Section -->
-    <main class="shop-container">
-        <h2 class="section-title">Trending Equipment & Gear</h2>
-        
-        <div class="product-grid">
-            <!-- Product Card 1 -->
+    <!-- Products Grid -->
+    <main class="container">
+        <h2 class="section-title">Featured Smartphones</h2>
+        <div class="grid">
+            
+            <!-- Product 1 -->
             <div class="product-card">
-                <span class="badge">Sale</span>
-                <img src="https://unsplash.com" alt="Running Shoes" class="product-img">
-                <div class="product-info">
-                    <span class="product-category">Footwear</span>
-                    <h3 class="product-title">AeroStride Running Shoes</h3>
-                    <div class="product-price">₹4,999 <span>₹6,499</span></div>
-                    <button class="add-btn">Add to Cart</button>
-                </div>
+                <img class="product-img" src="https://unsplash.com" alt="Smartphone Alpha">
+                <div class="product-name">Apex Phone 15 Pro</div>
+                <div class="product-price">$999</div>
+                <button class="buy-btn">Add to Cart</button>
             </div>
 
-            <!-- Product Card 2 -->
+            <!-- Product 2 -->
             <div class="product-card">
-                <img src="https://unsplash.com" alt="Basketball" class="product-img">
-                <div class="product-info">
-                    <span class="product-category">Equipment</span>
-                    <h3 class="product-title">Official Match Basketball</h3>
-                    <div class="product-price">₹2,499</div>
-                    <button class="add-btn">Add to Cart</button>
-                </div>
+                <img class="product-img" src="https://unsplash.com" alt="Smartphone Beta">
+                <div class="product-name">Galaxy X Ultra</div>
+                <div class="product-price">$1,199</div>
+                <button class="buy-btn">Add to Cart</button>
             </div>
 
-            <!-- Product Card 3 -->
+            <!-- Product 3 -->
             <div class="product-card">
-                <span class="badge">New</span>
-                <img src="https://unsplash.com" alt="Dumbbells" class="product-img">
-                <div class="product-info">
-                    <span class="product-category">Fitness</span>
-                    <h3 class="product-title">Hex Rubber Dumbbell Set (10kg)</h3>
-                    <div class="product-price">₹3,199</div>
-                    <button class="add-btn">Add to Cart</button>
-                </div>
+                <img class="product-img" src="https://unsplash.com" alt="Smartphone Gamma">
+                <div class="product-name">Nova Lite 10</div>
+                <div class="product-price">$450</div>
+                <button class="buy-btn">Add to Cart</button>
             </div>
 
-            <!-- Product Card 4 -->
-            <div class="product-card">
-                <img src="https://unsplash.com" alt="Training Jersey" class="product-img">
-                <div class="product-info">
-                    <span class="product-category">Apparel</span>
-                    <h3 class="product-title">Dry-Fit Training Jersey</h3>
-                    <div class="product-price">₹1,299</div>
-                    <button class="add-btn">Add to Cart</button>
-                </div>
-            </div>
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 MobileZone Store. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
