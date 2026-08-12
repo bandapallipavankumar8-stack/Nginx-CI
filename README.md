@@ -1,2 +1,2 @@
-Added comment to build app
+Added comment to build
 
