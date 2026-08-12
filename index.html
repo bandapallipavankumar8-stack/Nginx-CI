@@ -3,64 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ironclad Armory | Premium Protective Gear</title>
+    <title>Car Deckkers | Powered by MANI KUMAR</title>
     <style>
-        /* Global Reset & Theme */
+        /* Modern Reset and Fonts */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            background-color: #111116;
-            color: #eeeeee;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            overflow-x: hidden;
         }
 
-        /* Navigation Bar */
-        header {
-            background-color: #1a1a24;
-            border-bottom: 2px solid #ff4a4a;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .brand-logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #ff4a4a;
-            text-transform: uppercase;
-        }
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        nav ul li {
-            margin-left: 25px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover {
-            color: #ff4a4a;
-        }
-
-        /* Hero Showcase Section */
-        .hero-banner {
-            background: linear-gradient(rgba(17, 17, 22, 0.4), rgba(17, 17, 22, 0.95)), 
+        /* Hero Section Styling */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(11, 12, 16, 1)), 
                         url('https://unsplash.com') no-repeat center center/cover;
-            height: 450px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -68,226 +31,164 @@
             text-align: center;
             padding: 20px;
         }
-        .hero-banner h1 {
-            font-size: 48px;
-            font-weight: 800;
+
+        .brand-logo {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
-        .hero-banner p {
-            font-size: 18px;
-            max-width: 600px;
-            margin-bottom: 30px;
-            color: #cccccc;
-        }
-        .cta-btn {
-            background-color: #ff4a4a;
-            color: white;
-            padding: 12px 35px;
-            border: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-        }
-        .cta-btn:hover {
-            background-color: #d13232;
-            transform: scale(1.05);
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            text-shadow: 0px 4px 20px rgba(102, 252, 241, 0.4);
         }
 
-        /* Armor Grid Layout */
-        .content-wrapper {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
+        .brand-logo span {
+            color: #66fcf1; /* High-tech Cyan Accent */
         }
-        .section-heading {
-            font-size: 32px;
+
+        .creator-title {
+            font-size: 1.3rem;
+            color: #ffffff;
+            letter-spacing: 5px;
             text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .creator-title span {
+            color: #ff3838; /* Aggressive Red highlight for the name */
+            text-shadow: 0 0 10px rgba(255, 56, 56, 0.4);
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: #45f3ff;
+            font-weight: 400;
             letter-spacing: 2px;
             margin-bottom: 35px;
-            border-left: 5px solid #ff4a4a;
-            padding-left: 15px;
-        }
-        .armor-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .armor-card {
-            background-color: #1a1a24;
-            border: 1px solid #2d2d3d;
-            border-radius: 4px;
-            overflow: hidden;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .armor-card:hover {
-            border-color: #ff4a4a;
-            transform: translateY(-5px);
-        }
-        .image-holder {
-            width: 100%;
-            height: 250px;
-            background-color: #111116;
-            overflow: hidden;
-        }
-        .armor-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        .armor-card:hover .armor-img {
-            opacity: 1;
-        }
-        .info-panel {
-            padding: 25px;
-        }
-        .item-category {
-            color: #ff4a4a;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-        .item-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .item-desc {
-            font-size: 14px;
-            color: #aaaaaa;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .action-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .item-spec {
-            font-size: 14px;
-            font-weight: bold;
-            color: #ffffff;
-            background: #2d2d3d;
-            padding: 4px 10px;
-            border-radius: 3px;
-        }
-        .view-btn {
-            background: transparent;
-            color: #ff4a4a;
-            border: 1px solid #ff4a4a;
-            padding: 8px 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 12px;
-            cursor: pointer;
-            transition: background 0.3s, color 0.3s;
-        }
-        .view-btn:hover {
-            background: #ff4a4a;
-            color: white;
         }
 
-        /* Footer */
-        footer {
-            background-color: #0b0b0e;
-            border-top: 1px solid #2d2d3d;
+        /* Status Deployment Badge */
+        .deployment-badge {
+            background-color: rgba(26, 37, 48, 0.8);
+            border: 2px solid #66fcf1;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .deployment-badge span {
+            color: #2ecc71; /* Green success indicator */
+            font-weight: bold;
+        }
+
+        /* Service Cards Layout */
+        .services-container {
+            max-width: 1200px;
+            margin: -50px auto 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #1f2833;
+            border-top: 4px solid #66fcf1;
+            padding: 40px 20px;
+            border-radius: 8px;
             text-align: center;
-            padding: 30px;
-            margin-top: 60px;
-            font-size: 14px;
-            color: #666666;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(102, 252, 241, 0.1);
+        }
+
+        .card h3 {
+            color: #ffffff;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #c5c6c7;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer System Credits */
+        footer {
+            background-color: #0b0c10;
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2833;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        .credits {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .credits span {
+            color: #66fcf1;
+        }
+
+        /* Simple Pulse Animation for live check */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(102, 252, 241, 0.2); }
+            50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(102, 252, 241, 0.4); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(102, 252, 241, 0.2); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="brand-logo">Ironclad</div>
-        <nav>
-            <ul>
-                <li><a href="#">Catalog</a></li>
-                <li><a href="#">Ballistic</a></li>
-                <li><a href="#">Medieval</a></li>
-                <li><a href="#">Custom Build</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main Hero Banner -->
-    <section class="hero-banner">
-        <h1>Forged For Protection</h1>
-        <p>Engineered to endure the harshest conditions. Explore our high-grade tactical plates, shields, and historical replica gear.</p>
-        <button class="cta-btn">View Inventory</button>
+    <!-- Hero Showcase Area -->
+    <section class="hero">
+        <h1 class="brand-logo">Car <span>Deckkers</span></h1>
+        <div class="creator-title">By <span>MANI KUMAR</span></div>
+        <p class="tagline">Next-Gen Automotive Design & Customization Architecture</p>
+        
+        <!-- Live System Verification Dynamic Indicator -->
+        <div class="deployment-badge">
+            Automated Infrastructure: <span>● LIVE & ACTIVE</span>
+        </div>
     </section>
 
-    <!-- Showcase Grid -->
-    <main class="content-wrapper">
-        <h2 class="section-heading">Featured Gear</h2>
-        <div class="armor-grid">
-            
-            <!-- Armor Card 1 -->
-            <div class="armor-card">
-                <div class="image-holder">
-                    <img class="armor-img" src="https://unsplash.com" alt="Tactical Vest">
-                </div>
-                <div class="info-panel">
-                    <div class="item-category">Modern Ballistic</div>
-                    <div class="item-title">Vanguard Plate Carrier</div>
-                    <p class="item-desc">Heavy-duty laser-cut MOLLE system engineered for military operations. Built to house Level IV ceramic ballistic plates safely.</p>
-                    <div class="action-container">
-                        <span class="item-spec">Level IV Max</span>
-                        <button class="view-btn">Inspect</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Armor Card 2 -->
-            <div class="armor-card">
-                <div class="image-holder">
-                    <img class="armor-img" src="https://unsplash.com" alt="Medieval Helmet">
-                </div>
-                <div class="info-panel">
-                    <div class="item-category">Historical Replica</div>
-                    <div class="item-title">Paladin Steel Great Helm</div>
-                    <p class="item-desc">Hand-forged 14-gauge high-carbon steel construction. Perfect layout for full-contact combat sports and museum display.</p>
-                    <div class="action-container">
-                        <span class="item-spec">14-Gauge</span>
-                        <button class="view-btn">Inspect</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Armor Card 3 -->
-            <div class="armor-card">
-                <div class="image-holder">
-                    <img class="armor-img" src="https://unsplash.com" alt="Cyber Armor">
-                </div>
-                <div class="info-panel">
-                    <div class="item-category">Sci-Fi / Concept</div>
-                    <div class="item-title">Apex Exo-Shell Mk VII</div>
-                    <p class="item-desc">Lightweight, impact-resistant polycarbonate plating designed for cinematic cosplay production and extreme styling needs.</p>
-                    <div class="action-container">
-                        <span class="item-spec">Polycarb-6</span>
-                        <button class="view-btn">Inspect</button>
-                    </div>
-                </div>
-            </div>
-
+    <!-- Business Service Categories -->
+    <section class="services-container">
+        <div class="card">
+            <h3>Premium Decks</h3>
+            <p>Custom structural audio engineering, deck setups, cabin infotainment overhauls, and dashboard styling panels.</p>
         </div>
-    </main>
+        <div class="card">
+            <h3>Performance Tuning</h3>
+            <p>Engine remapping, custom ECU configurations, high-end suspension calibrations, and aggressive sports setups.</p>
+        </div>
+        <div class="card">
+            <h3>Bespoke Wraps</h3>
+            <p>Ultra-gloss paints, stealth matte vinyl protections, custom aerodynamic detailing, and multi-layer ceramic coats.</p>
+        </div>
+    </section>
 
-    <!-- Footer -->
+    <!-- Footer System Metadata -->
     <footer>
-        <p>&copy; 2026 Ironclad Armory Industries. All assets simulated for configuration purposes.</p>
+        <p>&copy; 2026 Car Deckkers Inc. All Rights Reserved.</p>
+        <p class="credits">System Engineered & Deployed Globally By: <span>MANI KUMAR</span></p>
     </footer>
 
 </body>
